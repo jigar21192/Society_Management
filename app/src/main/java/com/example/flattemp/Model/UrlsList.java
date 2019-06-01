@@ -2,7 +2,9 @@ package com.example.flattemp.Model;
 
 public class UrlsList {
 
-    public static final String base_url="http://pivotnet.co.in/SocietyManagement/";
+ //   public static final String base_url="http://pivotnet.co.in/SocietyManagement/";
+ public static final String base_url="http://majestic-overseas.com/society/society/";
+
 
     //storageurl
 
@@ -21,7 +23,7 @@ public class UrlsList {
     public static final String   documents_web_url=base_url+"documents_android.php";
     public static final String    vendors_web_url=base_url+"venders_android.php";
     public static final String staffs_web_url=base_url+"staffs_android.php";
-     public static final String rules_web_url=base_url+"Android/fetch_rules.php";
+    public static final String rules_web_url=base_url+"Android/fetch_rules.php";
     public static final String   meetings_url=base_url+"meeting_android.php";
     public static final String  notice_url=base_url+"notice_android.php";
     public static final String poll_web_url=base_url+"poll_booth_android.php";

@@ -84,7 +84,7 @@ public class ScrollingActivityChairman extends AppCompatActivity {
                             msg=user.getString("update_chairman_message");
                             date=user.getString("update_chairman_message_date");
                             String name=user.getString("update_chairman_message_name");
-                            String img="http://pivotnet.co.in/SocietyManagement/admin/"+user.getString("update_chairman_message_img");
+                            String img="http://majestic-overseas.com/society/society/admin/"+user.getString("update_chairman_message_img");
                             txt.setText(msg);
                             collapsingToolbarLayout.setTitle(name);
 

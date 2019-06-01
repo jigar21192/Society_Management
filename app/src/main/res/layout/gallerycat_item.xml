@@ -16,13 +16,13 @@
             android:id="@+id/iconimg"
             android:layout_height="fill_parent"
             android:layout_width="match_parent"
-            android:src="@drawable/ic_launcher_background"/>
+            />
         <TextView
             android:paddingTop="150dp"
             android:id="@+id/tcatagory"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="fvhbhfbjhbvfj"
+            android:text=""
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#fff"

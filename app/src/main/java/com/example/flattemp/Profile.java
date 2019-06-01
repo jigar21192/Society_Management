@@ -102,7 +102,7 @@ public class Profile extends AppCompatActivity {
                             tflattype.setText(flattype);
                             tmobno.setText(mobno);
                             Picasso.with(getApplicationContext())
-                                    .load("http://pivotnet.co.in/SocietyManagement/admin/"+imgurl)
+                                    .load("http://majestic-overseas.com/society/society/admin/"+imgurl)
                                     .placeholder(R.mipmap.ic_launcher)
                                     .fit()
                                     .into(profileimg);

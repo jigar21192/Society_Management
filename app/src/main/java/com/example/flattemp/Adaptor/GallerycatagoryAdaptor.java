@@ -48,7 +48,7 @@ public class GallerycatagoryAdaptor extends RecyclerView.Adapter<Gallerycatagory
 final String imgurl= UrlsList.pdf_storage +uploadCurrent.getIcon();
        Picasso.with(mContext)
                 .load(imgurl)
-                .placeholder(R.mipmap.ic_launcher)
+               // .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .into(holder.iconimg);
         holder.tcat.setText(uploadCurrent.getCatagory());

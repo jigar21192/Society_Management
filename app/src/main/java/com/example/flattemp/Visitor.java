@@ -60,7 +60,7 @@ public class Visitor extends AppCompatActivity {
         load(semail);
         //this method will fetch and parse json
         //to display it in recyclerview
-
+     //   Toast.makeText(this, semail, Toast.LENGTH_SHORT).show();
 
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -205,7 +205,7 @@ public class Visitor extends AppCompatActivity {
 
 
     private void load(final  String semail) {
-        String URL_member="http://pivotnet.co.in/SocietyManagement/Android/fetchmemberdata.php";
+        String URL_member="http://majestic-overseas.com/society/society/Android/fetchmemberdata.php";
         //Creating a string request
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_member,
                 new Response.Listener<String>() {

@@ -110,7 +110,7 @@ public class Knowyoursociety extends AppCompatActivity {
 
         String URL_member=UrlsList.rules_web_url;
         //Creating a string request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_member,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_member,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -118,7 +118,8 @@ public class Knowyoursociety extends AppCompatActivity {
                             JSONArray array = new JSONArray(response);
                             JSONObject user = array.getJSONObject(0);
                             // JSONObject user=new JSONObject(response);
-                            pdfurl=UrlsList.pdf_storage+user.getString("rules_file");
+                            pdfurl="http://majestic-overseas.com/society/society/"+user.getString("rules_file");
+                          //  Toast.makeText(Knowyoursociety.this,user.getString("rules_file") , Toast.LENGTH_SHORT).show();
 
                             webView.setWebViewClient(new WebViewClient(){
                                 @Override
@@ -129,8 +130,13 @@ public class Knowyoursociety extends AppCompatActivity {
 //show webview
                                     findViewById(R.id.activity_main_webview).setVisibility(View.VISIBLE);
                                 }});
+                            Intent i=new Intent();
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            i.setType(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(pdfurl));
+                            startActivity(i);
 
-                            webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + pdfurl);
+                            webView.loadUrl(pdfurl);
 
                         }
                         catch (JSONException e) {

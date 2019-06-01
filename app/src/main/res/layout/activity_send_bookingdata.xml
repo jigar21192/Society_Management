@@ -22,17 +22,19 @@
         />
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
         <TextView
-            android:textColor="#000"
-            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
             android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Member Id :"/>
         <TextView
             android:id="@+id/tid"
@@ -40,21 +42,23 @@
             android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text="Member Id "/>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
         <TextView
+            android:layout_marginLeft="10dp"
             android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Name :"/>
         <TextView
             android:id="@+id/tname"
@@ -66,17 +70,19 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
         <TextView
+            android:layout_marginLeft="10dp"
             android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Mobile No :"/>
         <TextView
 
@@ -89,17 +95,19 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
         <TextView
+            android:layout_marginLeft="10dp"
             android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Facility :"/>
         <TextView
             android:id="@+id/tfacility"
@@ -111,23 +119,22 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext"
-        android:weightSum="5"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_gravity="center"
+        android:gravity="left"
         android:orientation="horizontal">
         <TextView
-            android:layout_marginTop="4dp"
             android:textColor="#000"
+            android:layout_marginLeft="15dp"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text=" Date :"/>
+            android:layout_height="wrap_content"
+            android:text="Date :"/>
         <TextView
-            android:layout_marginTop="4dp"
-            android:layout_weight="2"
+
             android:id="@+id/tdate"
             android:textSize="20dp"
             android:layout_marginLeft="15dp"
@@ -135,6 +142,7 @@
             android:layout_height="wrap_content"
             android:text="17/05/2019"/>
         <ImageButton
+
             android:id="@+id/datebutton"
             android:src="@drawable/ic_date"
             android:layout_width="50dp"
@@ -142,12 +150,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:background="@drawable/edittext"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
         <TextView
+            android:layout_marginLeft="10dp"
             android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -159,12 +169,15 @@
             android:inputType="textMultiLine"
             android:id="@+id/ereason"
             android:textSize="20dp"
+            android:gravity="center"
+            android:paddingLeft="10dp"
             android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Write your Reason"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="center"
