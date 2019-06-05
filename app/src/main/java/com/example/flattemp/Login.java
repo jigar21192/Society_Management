@@ -48,27 +48,27 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         progressDialog=new ProgressDialog(Login.this);
         progressDialog.setMessage("Please Wait while Login....");
 
-        signupadmin=findViewById(R.id.linkSignupadmin);
+      /*  signupadmin=findViewById(R.id.linkSignupadmin);
         signupadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login.this,Adminweb.class));
             }
-        });
+        });*/
         //Initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        linksignup=(TextView) findViewById(R.id.linkSignup);
+    //    linksignup=(TextView) findViewById(R.id.linkSignup);
         buttonLogin = (AppCompatButton) findViewById(R.id.buttonLogin);
 
         //Adding click listener
         buttonLogin.setOnClickListener(this);
-        linksignup.setOnClickListener(new View.OnClickListener() {
+       /* linksignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login.this,Forgotpassword.class));
             }
-        });
+        });*/
     }
 
     @Override

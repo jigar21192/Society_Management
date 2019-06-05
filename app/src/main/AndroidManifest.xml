@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="HardcodedDebugMode">
+        tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode">
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
@@ -201,12 +201,12 @@
             android:label="Life At Society"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-        <activity
+      <!--  <activity
             android:name=".Signup"
             android:label="SignUp"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".Login"
             android:label="Login"

@@ -230,7 +230,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             i=new Intent(this,UpcomingEvents.class);startActivity(i);
         }
         else if (id == R.id.nav_photo) {
-            i=new Intent(this, GalleryCatagory.class);startActivity(i);
+            i=new Intent(this, GalleryCatagoryActivity.class);startActivity(i);
         }
         else if (id == R.id.nav_booking) {
             i=new Intent(this,BookingActivity.class);startActivity(i);

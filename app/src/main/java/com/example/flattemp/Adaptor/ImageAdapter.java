@@ -45,7 +45,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
          final String imgurl= UrlsList.pdf_storage +uploadCurrent.getGallery_img();
         Picasso.with(mContext)
                 .load(imgurl)
-                .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .into(holder.imageView);
         holder.textViewName.setText(uploadCurrent.getGallery_img_name());

@@ -63,7 +63,7 @@
             android:textSize="20dp"
             android:text="Login"/>
 
-        <TextView
+    <!--    <TextView
             android:id="@+id/linkSignup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -71,9 +71,9 @@
             android:text="Forgot Password ?"
             android:textColor="#E02828"
             android:gravity="center"
-            android:textSize="16dp"/>
+            android:textSize="16dp"/>-->
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/linkSignupadmin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
             android:text="Admin Login"
             android:textColor="#E02828"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:textSize="16dip"/>-->
 
     </LinearLayout>
 </ScrollView>
