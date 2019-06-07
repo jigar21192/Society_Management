@@ -6,13 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".Visitor"
     android:background="#EEEBEB">
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/pullToRefresh"
+    <android.support.v7.widget.CardView
+        android:id="@+id/visitor_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <android.support.v7.widget.RecyclerView
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginTop="200dp">
+
+        <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/eventrecycle"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="180dp"
+                    android:layout_height="210dp"
+                    android:layout_weight="1.6"
+                    android:background="@drawable/vehical" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.4">
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:text="Abhishek" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/mob"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:text="8155882118" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="70dp"
+                            android:text="Ahmedabad" />
+                    </TableRow>
+
+                </TableLayout>
+
+
+            </TableRow>
+
+        </TableLayout>
+
+
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
