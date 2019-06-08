@@ -39,7 +39,7 @@ public class knowyoursocietyopt extends AppCompatActivity {
         vendors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(knowyoursocietyopt.this,Knowyoursociety.class);
+                Intent i=new Intent(knowyoursocietyopt.this,Vendor_Details.class);
                 i.putExtra("cat","c");
                 startActivity(i);
             }

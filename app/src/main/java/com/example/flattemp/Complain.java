@@ -9,50 +9,39 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.flattemp.Model.UrlsList;
 
-public class Complain extends AppCompatActivity {
-    WebView webView;
+public class Complain extends AppCompatActivity  implements
+        AdapterView.OnItemSelectedListener {
+    String[] country = { "Lift Issue", "Plumbing", "Water", "Other"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complain);
-        webView = (WebView) findViewById(R.id.activity_main_webview);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        // WebViewClient webViewClient=new WebViewClient(this);
-        webView.setWebViewClient(new WebViewClient(){
-            @Override
-            public void onPageFinished(WebView view, String url) {
-//hide loading image
-                findViewById(R.id.progressBar1).setVisibility(View.GONE);
-//show webview
-                findViewById(R.id.activity_main_webview).setVisibility(View.VISIBLE);
-            }});
 
-        webView.loadUrl(UrlsList.complain_url);
+        Spinner spin = (Spinner) findViewById(R.id.spinner_complain);
+        spin.setOnItemSelectedListener(this);
+
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,country);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(aa);
+
+    }
 
 
-
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getApplicationContext(),country[position] , Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK:
-                    if (webView.canGoBack()) {
-                        webView.goBack();
-                    } else {
-                        finish();
-                    }
-                    return true;
-            }
+    public void onNothingSelected(AdapterView<?> parent) {
 
-        }
-        return super.onKeyDown(keyCode, event);
     }
-
-
 }

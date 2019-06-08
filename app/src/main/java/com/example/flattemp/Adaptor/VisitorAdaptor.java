@@ -3,6 +3,7 @@ package com.example.flattemp.Adaptor;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -46,14 +47,14 @@ public class VisitorAdaptor extends RecyclerView.Adapter<VisitorAdaptor.ImageVie
           final Visitormodel uploadCurrent = mUploads.get(position);
          // holder.date.setText(uploadCurrent.getDate());
              String url= UrlsList.pdf_storage +uploadCurrent.getVisitor_img();
+
         Picasso.with(mContext)
                 .load(url)
-                .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .into(holder.profilepic);
-        holder.name.setText("Visitor Name :"+uploadCurrent.getVisitor_name());
-        holder.contact.setText("Visitor Mob No"+uploadCurrent.getVisitor_phone_num());
-        holder.flatno.setText("Flat No "+uploadCurrent.getMem_flat_num());
+        holder.name.setText("Visitor Name : "+uploadCurrent.getVisitor_name());
+        holder.contact.setText("Visitor Mob No: "+uploadCurrent.getVisitor_phone_num());
+        holder.flatno.setText("Flat No: "+uploadCurrent.getMem_flat_num());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

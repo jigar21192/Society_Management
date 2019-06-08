@@ -60,7 +60,7 @@ public class Visitor extends AppCompatActivity {
         load(semail);
         //this method will fetch and parse json
         //to display it in recyclerview
-     //   Toast.makeText(this, semail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, semail, Toast.LENGTH_SHORT).show();
 
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
