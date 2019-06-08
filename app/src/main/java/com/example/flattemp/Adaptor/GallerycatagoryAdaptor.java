@@ -51,6 +51,7 @@ final String imgurl= UrlsList.pdf_storage +uploadCurrent.getIcon();
                // .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .into(holder.iconimg);
+       holder.gallary_date.setText(uploadCurrent.getDate());
         holder.tcat.setText(uploadCurrent.getCatagory());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +73,14 @@ final String imgurl= UrlsList.pdf_storage +uploadCurrent.getIcon();
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView tcat;
+        public TextView tcat,gallary_date;
         public ImageView iconimg;
          public ImageViewHolder(View itemView) {
 
              super(itemView);
 
             tcat=itemView.findViewById(R.id.tcatagory);
+             gallary_date=itemView.findViewById(R.id.gallary_date);
              iconimg = itemView.findViewById(R.id.iconimg);
              itemView.setOnClickListener(this);
              itemView.setOnCreateContextMenuListener(this);

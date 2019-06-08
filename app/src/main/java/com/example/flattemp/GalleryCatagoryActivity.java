@@ -156,7 +156,8 @@ public class GalleryCatagoryActivity extends AppCompatActivity {
                                 eventlist.add(0, new GalleryCatagory(
                                         user.getString("id"),
                                         user.getString("catagory"),
-                                        user.getString("icon")
+                                        user.getString("icon"),
+                                       user.getString("date")
 
                                        /* user.getString("mem_name"),
                                         user.getString("mem_flat_num"),
