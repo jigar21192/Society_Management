@@ -300,6 +300,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                             JSONObject user = array.getJSONObject(0);
                             // JSONObject user=new JSONObject(response);
                              textview2.setText(user.getString("mem_flat_num"));
+
+                            SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                            //Creating editor to store values to shared preferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            //Adding values to editor
+
+                            editor.putString(Config.MEMBER_ID_SHARED_PREF, user.getString("mem_id"));
+                            //Saving values to editor
+                            editor.commit();
                         }
                         catch (JSONException e) {
                            // Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();

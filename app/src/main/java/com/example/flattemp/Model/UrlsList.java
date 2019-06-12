@@ -47,6 +47,7 @@ public class UrlsList {
     public static final String  fetch_monthly_reciept=base_url+"Android/monthly_receipt_fetch.php";
     public static final String fetch_view_statement_self=base_url+"Android/fetch_viewstatement_self.php";
     public static final String fetch_visitor=base_url+"Android/fetchvisitor.php";
+    public static final String fetch_notice=base_url+"Android/fetch_notice.php";
 
 
 
