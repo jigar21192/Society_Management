@@ -1,91 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingTop="1dp"
+    android:paddingBottom="2dp"
+    android:background="#E4F1EB"
+    android:layout_margin="3dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginLeft="30dp"
+        android:id="@+id/vandor_profileImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:padding="2dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_width="1dp" />
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/booking_card"
+    <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_marginTop="200dp">
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
 
-        <TableLayout
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/vandor_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#212121"
+            android:textSize="20dp" />
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:weightSum="3"
-                android:gravity="center_vertical">
+        <TextView
+            android:gravity="center"
+            android:id="@+id/vandor_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact no" />
+        <TextView
+            android:gravity="center"
+            android:id="@+id/vandor_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Details" />
+    </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/iv1"
-                    android:layout_width="200dp"
-                    android:layout_height="210dp"
-                    android:background="@drawable/vehical"
-                    android:layout_weight="1.6"/>
-
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.4">
-
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:gravity="center_horizontal">
-
-                        <TextView
-                            android:id="@+id/name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Abhishek"
-                            tools:ignore="DuplicateIds"
-                            android:gravity="center"/>
-                    </TableRow>
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/contact"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="8155882118"
-                            tools:ignore="DuplicateIds"
-                            android:gravity="center"/>
-                    </TableRow>
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:gravity="center_horizontal"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:id="@+id/details"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Mari Marji"
-                            tools:ignore="DuplicateIds"
-                            android:gravity="center"/>
-                    </TableRow>
-
-                </TableLayout>
-
-            </TableRow>
-
-
-
-
-        </TableLayout>
-
-
-    </android.support.v7.widget.CardView>
-
-</RelativeLayout>
+</LinearLayout>

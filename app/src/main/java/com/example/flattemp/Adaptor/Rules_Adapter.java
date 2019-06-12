@@ -2,7 +2,6 @@ package com.example.flattemp.Adaptor;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
@@ -14,22 +13,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.example.flattemp.Model.Document;
+import com.example.flattemp.Model.Rules_Model;
 import com.example.flattemp.Model.UrlsList;
 import com.example.flattemp.R;
 
 import java.util.List;
 
-/**
- * Created by Manoranjan on 4/23/2018.
- */
-
-public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ImageViewHolder> {
+public class Rules_Adapter extends RecyclerView.Adapter<Rules_Adapter.ImageViewHolder> {
     private Context mContext;
-    private List<Document> mUploads;
+    private List<Rules_Model> mUploads;
     private OnItemClickListener mListener;
-    public DocumentAdapter(Context mContext, List<Document> mUploads) {
+    public Rules_Adapter(Context mContext, List<Rules_Model> mUploads) {
         this.mContext = mContext;
         this.mUploads = mUploads;
     }
@@ -42,13 +36,22 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ImageV
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
-        Document uploadCurrent = mUploads.get(position);
+        Rules_Model uploadCurrent = mUploads.get(position);
 
-        holder.dname.setText(uploadCurrent.getUpdate_rule_file());
-       final String Download= UrlsList.base_url +uploadCurrent.getUpdate_rule_file_loca();
-             //String URL ="http://pivotnet.co.in/SocietyManagement/"+uploadCurrent.getUpdate_rule_file_loca();
+        holder.dname.setText(uploadCurrent.getRules_name());
+        final String Download= UrlsList.base_url +uploadCurrent.getRules_file();
+       /* holder.download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String URL ="http://pivotnet.co.in/SocietyManagement/"+uploadCurrent.getUpdate_rule_file_loca();
 
-
+                Intent i=new Intent();
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.setType(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(Download));
+                mContext.startActivity(i);
+            }
+        });*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,19 +72,19 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ImageV
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  dname;
+        public TextView dname;
         ImageView download;
 
-         public ImageViewHolder(View itemView) {
+        public ImageViewHolder(View itemView) {
 
-             super(itemView);
-             dname = itemView.findViewById(R.id.documentname);
-             download=itemView.findViewById(R.id.download);
+            super(itemView);
+            dname = itemView.findViewById(R.id.documentname);
+            download=itemView.findViewById(R.id.download);
 
 
-             itemView.setOnClickListener(this);
-             itemView.setOnCreateContextMenuListener(this);
-         }
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
+        }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {

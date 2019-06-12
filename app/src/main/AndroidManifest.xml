@@ -20,7 +20,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode">
-        <activity android:name=".Vendor_Details"></activity>
+        <activity android:name=".Staff_Info"></activity>
+        <activity android:name=".RulesAndRegulation" />
+        <activity android:name=".Vendor_Details" />
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"

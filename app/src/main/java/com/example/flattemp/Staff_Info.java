@@ -5,15 +5,8 @@ import android.content.SharedPreferences;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
-import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,12 +15,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.flattemp.Adaptor.Meetings_Adapter;
-import com.example.flattemp.Adaptor.NoticeAdapter;
+import com.example.flattemp.Adaptor.Staff_Adapter;
+import com.example.flattemp.Adaptor.Vendor_Adapter;
 import com.example.flattemp.Model.Config;
-import com.example.flattemp.Model.Meeting_Model;
-import com.example.flattemp.Model.Notice_Model;
+import com.example.flattemp.Model.Staff_Model;
 import com.example.flattemp.Model.UrlsList;
+import com.example.flattemp.Model.Vendor_Model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,18 +31,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Meetings extends AppCompatActivity implements  Meetings_Adapter.OnItemClickListener{
+public class Staff_Info extends AppCompatActivity implements  Staff_Adapter.OnItemClickListener{
+
     RecyclerView eventrecycler;
-    List<Meeting_Model> eventlist;
+    List<Staff_Model> eventlist;
     SwipeRefreshLayout pullToRefresh;
-    Meetings_Adapter adapter;
+    Staff_Adapter adapter;
     String mem_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meetings);
-
-
+        setContentView(R.layout.activity_staff__info);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
 
@@ -57,11 +49,11 @@ public class Meetings extends AppCompatActivity implements  Meetings_Adapter.OnI
         pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
         eventrecycler = findViewById(R.id.eventrecycle);
         eventrecycler.setHasFixedSize(true);
-        eventrecycler.setLayoutManager(new LinearLayoutManager(Meetings.this));
+        eventrecycler.setLayoutManager(new LinearLayoutManager(Staff_Info.this));
 
         eventlist = new ArrayList<>();
-        adapter=new Meetings_Adapter(getApplicationContext(),eventlist);
-        adapter.setOnItemClickListener(Meetings.this);
+        adapter=new Staff_Adapter(getApplicationContext(),eventlist);
+        adapter.setOnItemClickListener(Staff_Info.this);
 
 
         loadData();
@@ -75,12 +67,11 @@ public class Meetings extends AppCompatActivity implements  Meetings_Adapter.OnI
             }
         });
 
-
     }
 
     private void loadData() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_meetings,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_staff_data,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -96,10 +87,11 @@ public class Meetings extends AppCompatActivity implements  Meetings_Adapter.OnI
                                 JSONObject user = array.getJSONObject(i);
 
 
-                                eventlist.add(0, new Meeting_Model(
-                                        user.getString("meeting_date"),
-                                        user.getString("meeting_title"),
-                                        user.getString("meeting_descr")
+                                eventlist.add(0, new Staff_Model(
+                                        user.getString("staff_name"),
+                                        user.getString("staff_img"),
+                                        user.getString("staff_post"),
+                                        user.getString("staff_about")
                                 ));
 
 
@@ -109,7 +101,7 @@ public class Meetings extends AppCompatActivity implements  Meetings_Adapter.OnI
                             pullToRefresh.setRefreshing(false);
 
                             //creating adapter object and setting it to recyclerview
-                            adapter = new Meetings_Adapter(getApplicationContext(), eventlist);
+                            adapter = new Staff_Adapter(getApplicationContext(), eventlist);
                             eventrecycler.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();

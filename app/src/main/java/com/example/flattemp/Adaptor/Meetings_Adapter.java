@@ -1,9 +1,6 @@
 package com.example.flattemp.Adaptor;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -14,52 +11,46 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.example.flattemp.Model.Document;
-import com.example.flattemp.Model.UrlsList;
+import com.example.flattemp.Model.Meeting_Model;
 import com.example.flattemp.R;
 
 import java.util.List;
 
-/**
- * Created by Manoranjan on 4/23/2018.
- */
-
-public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ImageViewHolder> {
+public class Meetings_Adapter extends RecyclerView.Adapter<Meetings_Adapter.MeetingsViewHolder> {
     private Context mContext;
-    private List<Document> mUploads;
+    private List<Meeting_Model> mUploads;
     private OnItemClickListener mListener;
-    public DocumentAdapter(Context mContext, List<Document> mUploads) {
+    public Meetings_Adapter(Context mContext, List<Meeting_Model> mUploads) {
         this.mContext = mContext;
         this.mUploads = mUploads;
     }
 
     @Override
-    public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.document_item, parent, false);
-        return new ImageViewHolder(v);
+    public MeetingsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.meetings_list_item, parent, false);
+        return new MeetingsViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ImageViewHolder holder, int position) {
-        Document uploadCurrent = mUploads.get(position);
+    public void onBindViewHolder(MeetingsViewHolder holder, int position) {
+        final Meeting_Model model = mUploads.get(position);
 
-        holder.dname.setText(uploadCurrent.getUpdate_rule_file());
-       final String Download= UrlsList.base_url +uploadCurrent.getUpdate_rule_file_loca();
-             //String URL ="http://pivotnet.co.in/SocietyManagement/"+uploadCurrent.getUpdate_rule_file_loca();
+        holder.txt_date.setText("Date:"+model.getDate());
+        holder.txt_title.setText("Title:"+model.getTitle());
+        holder.txt_desc.setText("Description:"+model.getDescription());
 
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Download));
-                mContext.startActivity(browserIntent);
+                String img=uploadCurrent.getGallery_img();
+                String  name=uploadCurrent.getGallery_img_name();
+                Intent i= new Intent(mContext, Shoesingleimage.class);
+                i.putExtra("img",imgurl);
+                i.putExtra("name",name);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(i);
             }
-        });
-
-
-
-
+        });*/
     }
 
     @Override
@@ -67,21 +58,19 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ImageV
         return mUploads.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+    public class MeetingsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  dname;
-        ImageView download;
+        public TextView txt_date,txt_title,txt_desc;
+        public ImageView imageView;
+        public MeetingsViewHolder(View itemView) {
 
-         public ImageViewHolder(View itemView) {
-
-             super(itemView);
-             dname = itemView.findViewById(R.id.documentname);
-             download=itemView.findViewById(R.id.download);
-
-
-             itemView.setOnClickListener(this);
-             itemView.setOnCreateContextMenuListener(this);
-         }
+            super(itemView);
+            txt_date = itemView.findViewById(R.id.m_date);
+            txt_title = itemView.findViewById(R.id.m_title);
+            txt_desc = itemView.findViewById(R.id.m_desc);
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
+        }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {

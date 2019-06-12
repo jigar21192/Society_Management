@@ -48,6 +48,11 @@ public class UrlsList {
     public static final String fetch_view_statement_self=base_url+"Android/fetch_viewstatement_self.php";
     public static final String fetch_visitor=base_url+"Android/fetchvisitor.php";
     public static final String fetch_notice=base_url+"Android/fetch_notice.php";
+    public static final String fetch_meetings=base_url+"Android/fetch_meetings.php";
+    public static final String fetch_vendor=base_url+"Android/fetch_vendor.php";
+    public static final String fetch_rules=base_url+"Android/fetch_rules.php";
+    public static final String fetch_staff_data=base_url+"Android/fetch_staff.php";
+    public static final String insert_complain=base_url+"Android/insert_complaint.php";
 
 
 

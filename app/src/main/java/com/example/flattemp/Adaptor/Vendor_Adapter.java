@@ -1,9 +1,6 @@
 package com.example.flattemp.Adaptor;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -14,52 +11,55 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.example.flattemp.Model.Document;
+import com.example.flattemp.Model.Notice_Model;
 import com.example.flattemp.Model.UrlsList;
+import com.example.flattemp.Model.Vendor_Model;
 import com.example.flattemp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by Manoranjan on 4/23/2018.
- */
-
-public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ImageViewHolder> {
+public class Vendor_Adapter extends RecyclerView.Adapter<Vendor_Adapter.VendorViewHolder> {
     private Context mContext;
-    private List<Document> mUploads;
+    private List<Vendor_Model> mUploads;
     private OnItemClickListener mListener;
-    public DocumentAdapter(Context mContext, List<Document> mUploads) {
+    public Vendor_Adapter(Context mContext, List<Vendor_Model> mUploads) {
         this.mContext = mContext;
         this.mUploads = mUploads;
     }
 
     @Override
-    public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.document_item, parent, false);
-        return new ImageViewHolder(v);
+    public VendorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.vendor_details, parent, false);
+        return new VendorViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ImageViewHolder holder, int position) {
-        Document uploadCurrent = mUploads.get(position);
+    public void onBindViewHolder(VendorViewHolder holder, int position) {
+        final Vendor_Model model = mUploads.get(position);
 
-        holder.dname.setText(uploadCurrent.getUpdate_rule_file());
-       final String Download= UrlsList.base_url +uploadCurrent.getUpdate_rule_file_loca();
-             //String URL ="http://pivotnet.co.in/SocietyManagement/"+uploadCurrent.getUpdate_rule_file_loca();
+        holder.shop_name.setText(model.getShop_name());
+        holder.owner_name.setText(model.getOwner_name());
+        holder.about_vendor.setText(model.getAbout_vendor());
 
+          final String imgurl= UrlsList.pdf_storage +model.getVendor_img();
+        Picasso.with(mContext)
+                .load(imgurl)
+                .fit()
+                .into(holder.vendor_img);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Download));
-                mContext.startActivity(browserIntent);
+                String img=uploadCurrent.getGallery_img();
+                String  name=uploadCurrent.getGallery_img_name();
+                Intent i= new Intent(mContext, Shoesingleimage.class);
+                i.putExtra("img",imgurl);
+                i.putExtra("name",name);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(i);
             }
-        });
-
-
-
-
+        });*/
     }
 
     @Override
@@ -67,21 +67,22 @@ public class DocumentAdapter extends RecyclerView.Adapter<DocumentAdapter.ImageV
         return mUploads.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+    public class VendorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  dname;
-        ImageView download;
+        public TextView shop_name,owner_name,about_vendor;
+        public ImageView vendor_img;
+        public VendorViewHolder(View itemView) {
 
-         public ImageViewHolder(View itemView) {
+            super(itemView);
+            shop_name = itemView.findViewById(R.id.vandor_contact);
+            owner_name = itemView.findViewById(R.id.vandor_name);
+            about_vendor = itemView.findViewById(R.id.vandor_details);
+            vendor_img = itemView.findViewById(R.id.vandor_profileImage);
 
-             super(itemView);
-             dname = itemView.findViewById(R.id.documentname);
-             download=itemView.findViewById(R.id.download);
 
-
-             itemView.setOnClickListener(this);
-             itemView.setOnCreateContextMenuListener(this);
-         }
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
+        }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {

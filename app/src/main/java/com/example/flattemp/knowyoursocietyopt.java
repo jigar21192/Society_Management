@@ -23,8 +23,8 @@ public class knowyoursocietyopt extends AppCompatActivity {
         rules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(knowyoursocietyopt.this,Knowyoursociety.class);
-                i.putExtra("cat","a");
+                Intent i=new Intent(knowyoursocietyopt.this,RulesAndRegulation.class);
+
                 startActivity(i);
             }
         });
@@ -47,8 +47,8 @@ public class knowyoursocietyopt extends AppCompatActivity {
         staffs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(knowyoursocietyopt.this,Knowyoursociety.class);
-                i.putExtra("cat","d");
+                Intent i=new Intent(knowyoursocietyopt.this,Staff_Info.class);
+
                 startActivity(i);
             }
         });

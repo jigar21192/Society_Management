@@ -24,6 +24,7 @@
         tools:ignore="MissingConstraints">
 
         <LinearLayout
+            android:background="@drawable/capsule_edit"
             android:id="@+id/relativeLayout"
             android:layout_width="275dp"
             android:layout_height="44dp"

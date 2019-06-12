@@ -2,10 +2,36 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:background="@drawable/capsule_edit"
+    android:orientation="vertical">
 
-    <RelativeLayout
 
+    <TextView
+        android:layout_margin="7dp"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/m_date"
+        android:text="Complain Type"/>
+
+    <TextView
+        android:textSize="20dp"
+        android:layout_margin="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/m_title"
+        android:text="Complain Remarks"/>
+    <TextView
+        android:textSize="20dp"
+        android:layout_margin="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/m_desc"
+        android:text="Complain Reply"/>
+
+    <!--<RelativeLayout
+        android:background="@drawable/capsule_edit"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -30,7 +56,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_marginLeft="20dp"
-                android:layout_width="150dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:gravity="center">
 
@@ -44,7 +70,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
+                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
@@ -54,13 +80,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:maxLines="2"
                     android:text="DESCRIPTION"
                     android:textSize="20dp" />
             </LinearLayout>
         </LinearLayout>
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 
 </LinearLayout>

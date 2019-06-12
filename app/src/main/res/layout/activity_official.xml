@@ -57,6 +57,7 @@
                     android:foreground="@drawable/meetings">
                 </android.support.v7.widget.CardView>
             </LinearLayout>
+
             <LinearLayout
                 android:clipToPadding="false"
                 android:layout_width="match_parent"

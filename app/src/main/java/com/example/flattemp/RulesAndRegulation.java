@@ -1,7 +1,5 @@
 package com.example.flattemp;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,19 +12,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.flattemp.Adaptor.VisitorAdaptor;
+import com.example.flattemp.Adaptor.DocumentAdapter;
+import com.example.flattemp.Adaptor.Rules_Adapter;
 import com.example.flattemp.Model.Config;
+import com.example.flattemp.Model.Document;
+import com.example.flattemp.Model.Rules_Model;
 import com.example.flattemp.Model.UrlsList;
-import com.example.flattemp.Model.Visitormodel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,35 +35,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Visitor extends AppCompatActivity {
-   // private static final String URL_PRODUCTS = "http://pivotnet.co.in/SocietyManagement/Android/fetchvisitor.php";
-    List<Visitormodel> visitorlist;
-    RecyclerView eventrecycler;
-    VisitorAdaptor eventAdaptor;
-    SwipeRefreshLayout pullToRefresh;
-    String flatno1,mem_id;
+public class RulesAndRegulation extends AppCompatActivity {
 
+    List<Rules_Model> eventlist;
+    RecyclerView eventrecycler;
+
+    SwipeRefreshLayout pullToRefresh;
+    String mem_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visitor);
+        setContentView(R.layout.activity_rules_and_regulation);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
+
+
         pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
         eventrecycler = findViewById(R.id.eventrecycle);
         eventrecycler.setHasFixedSize(true);
         eventrecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        visitorlist = new ArrayList<>();
-        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
-       // load(semail);
+        eventlist = new ArrayList<>();
+
+
         //this method will fetch and parse json
         //to display it in recyclerview
-       // Toast.makeText(this, semail, Toast.LENGTH_SHORT).show();
         loadUsers();
+
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                visitorlist.clear();
+                eventlist.clear();
                 loadUsers();
 
             }
@@ -117,7 +119,7 @@ public class Visitor extends AppCompatActivity {
                         editor.commit();
 
                         //Starting login activity
-                        Intent intent = new Intent(Visitor.this, Login.class);
+                        Intent intent = new Intent(RulesAndRegulation.this, Login.class);
                         startActivity(intent);
                     }
                 });
@@ -138,7 +140,7 @@ public class Visitor extends AppCompatActivity {
 
     private void loadUsers() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_visitor,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_rules,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -153,19 +155,18 @@ public class Visitor extends AppCompatActivity {
                                 JSONObject user = array.getJSONObject(i);
 
                                 //adding the product to product list
-                                //String visitor_id,visitor_time,guard_name,visitor_name,visitor_phone_num,
-                                // mem_block_num,mem_flat_num,visitor_purpose,visitor_img,visitor_vechile_img;
-                                visitorlist.add(0, new Visitormodel(
-                                        user.getString("visitor_id"),
-                                        user.getString("visitor_time"),
-                                        user.getString("guard_name"),
-                                        user.getString("visitor_name"),
-                                        user.getString("visitor_phone_num"),
-                                        user.getString("mem_block_num"),
+                                //String visitor_id,visitor_name,visitor_phone_num,visitor_vechile_num,
+                                // mem_name,mem_flat_num,mem_phone_num,in_time_date,visitor_img;
+                                eventlist.add(0, new Rules_Model(
+                                        user.getString("rules_file"),
+                                        user.getString("rules_name")
+
+
+                                       /* user.getString("mem_name"),
                                         user.getString("mem_flat_num"),
-                                        user.getString("visitor_purpose"),
-                                        user.getString("visitor_img"),
-                                        user.getString("visitor_vechile_img")
+                                        user.getString("mem_phone_num")
+                                        , user.getString("in_time_date"),
+                                        user.getString("visitor_img")*/
 
                                 ));
 
@@ -176,7 +177,7 @@ public class Visitor extends AppCompatActivity {
                             pullToRefresh.setRefreshing(false);
 
                             //creating adapter object and setting it to recyclerview
-                            VisitorAdaptor adapter1 = new VisitorAdaptor(getApplicationContext(), visitorlist);
+                            Rules_Adapter adapter1 = new Rules_Adapter(getApplicationContext(), eventlist);
                             eventrecycler.setAdapter(adapter1);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -188,64 +189,20 @@ public class Visitor extends AppCompatActivity {
 
             }
         }
-        ){
+        )
+        {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
+                Map<String, String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("mem_user_id",mem_id);
+                params.put("mem_user_id", mem_id);
                 //returning parameter
                 return params;
             }
+
         };
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
-    }
-
-
-    private void load(final  String semail) {
-        String URL_member="http://majestic-overseas.com/society/society/Android/fetchmemberdata.php";
-        //Creating a string request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_member,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONArray array = new JSONArray(response);
-                            JSONObject user = array.getJSONObject(0);
-                            // JSONObject user=new JSONObject(response);
-
-                            flatno1=user.getString("mem_flat_num");
-                            //textView2.setText(flatno1);
-                            loadUsers();
-
-                        }
-                        catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        //You can handle error here if you want
-                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                    }
-                }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                //Adding parameters to request
-                params.put("email", semail);
-                //returning parameter
-                return params;
-            }
-        };
-
-        //Adding the string request to the queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 }

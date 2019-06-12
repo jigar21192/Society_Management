@@ -17,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -36,7 +37,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DocumentsActivity extends AppCompatActivity {
     //private static final String URL_PRODUCTS = "http://pivotnet.co.in/SocietyManagement/Android/fetch_document.php";
@@ -44,11 +47,18 @@ public class DocumentsActivity extends AppCompatActivity {
     RecyclerView eventrecycler;
     DocumentAdapter eventAdaptor;
     SwipeRefreshLayout pullToRefresh;
+    String mem_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_documents);
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
+
+
         pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
         eventrecycler = findViewById(R.id.eventrecycle);
         eventrecycler.setHasFixedSize(true);
@@ -137,7 +147,7 @@ public class DocumentsActivity extends AppCompatActivity {
 
     private void loadUsers() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlsList.fetch_documents_url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_documents_url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -190,7 +200,18 @@ public class DocumentsActivity extends AppCompatActivity {
 
             }
         }
-        );
+        )
+            {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    //Adding parameters to request
+                    params.put("mem_user_id", mem_id);
+                    //returning parameter
+                    return params;
+                }
+
+        };
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(getApplicationContext()).add(stringRequest);

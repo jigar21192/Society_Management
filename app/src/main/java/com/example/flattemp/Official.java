@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 public class Official extends AppCompatActivity {
-    CardView complain,notice,meetings,poll;
+    CardView complain,notice,meetings,poll,visitor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,7 @@ public class Official extends AppCompatActivity {
         notice=findViewById(R.id.notice);
         meetings=findViewById(R.id.meetings);
         poll=findViewById(R.id.poll);
+
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +44,7 @@ public class Official extends AppCompatActivity {
                 startActivity(new Intent(Official.this,Polls.class));
             }
         });
+
 
     }
 }
