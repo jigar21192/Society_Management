@@ -33,8 +33,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SendBookingdata extends AppCompatActivity {
@@ -42,13 +45,15 @@ public class SendBookingdata extends AppCompatActivity {
     //String url_booking="http://pivotnet.co.in/SocietyManagement/Android/booking_request.php";
     //String url_date="http://pivotnet.co.in/SocietyManagement/Android/fetch_booking_date.php";
     String cat,semail;
-    TextView tdate,tfacility,tid,tname,tmobno,warningtext;
+    TextView tdate,tfacility,tid,tname,tmobno,warningtext,to_date;
     EditText ereason;
-    ImageButton datepicker;
-    String id1,name1,mno1,datepicked="",reason;
+    ImageButton datepicker,to_datebutton;
+    String from_date,to_date1;
+    String id1,name1,mno1,datepicked="",to_datepicked="",reason,facility_name,facility_id,mem_id;
     Button submit;
     ProgressDialog progressDialog;
-    private DatePickerDialog.OnDateSetListener mDatesetlistner;
+
+    private DatePickerDialog.OnDateSetListener mDatesetlistner,date1;
 
     @Override
     protected void onStart() {
@@ -61,13 +66,18 @@ public class SendBookingdata extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_bookingdata);
         Intent intent = getIntent();
-        cat = intent.getStringExtra("icon");
+        facility_name=intent.getStringExtra("name");
+        facility_id=intent.getStringExtra("booking_id");
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
         semail = sharedPreferences.getString(Config.EMAIL_SHARED_PREF,"Not Available");
         warningtext=findViewById(R.id.warningtxt);
         tdate=findViewById(R.id.tdate);
-        tdate.setText("");
+        to_date=findViewById(R.id.to_date);
+        to_date.setText(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()));
+        tdate.setText(new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()));
         tfacility=findViewById(R.id.tfacility);
+        tfacility.setText(facility_name);
         tid=findViewById(R.id.tid);
         tname=findViewById(R.id.tname);
         tmobno=findViewById(R.id.tmobno);
@@ -75,9 +85,9 @@ public class SendBookingdata extends AppCompatActivity {
         submit=findViewById(R.id.submit);
         progressDialog=new ProgressDialog(SendBookingdata.this);
         progressDialog.setMessage("Please wait while sending  your request");
-        tfacility.setText(cat);
 
 
+        to_datebutton=findViewById(R.id.to_datebutton);
         datepicker=findViewById(R.id.datebutton);
         datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +98,7 @@ public class SendBookingdata extends AppCompatActivity {
                 int day=cal.get(Calendar.DATE);
 
 
-                DatePickerDialog dailog= new DatePickerDialog(SendBookingdata.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDatesetlistner,year,month,day);
+                DatePickerDialog dailog= new DatePickerDialog(SendBookingdata.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDatesetlistner,year,month+1,day);
                 dailog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dailog.show();
             }
@@ -97,19 +107,46 @@ public class SendBookingdata extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 datepicked=  dayOfMonth+"/"+month+"/"+year;
+                from_date=year+"-"+month+"-"+dayOfMonth;
                 tdate.setText(datepicked);
-                loaddate(datepicked);
+               // loaddate(datepicked);
+
+
+            }
+        };
+        to_datebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal=Calendar.getInstance();
+                int year=cal.get(Calendar.YEAR);
+                int month=cal.get(Calendar.MONTH);
+                int day=cal.get(Calendar.DATE);
+
+
+                DatePickerDialog dailog= new DatePickerDialog(SendBookingdata.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,date1,year,month+1,day);
+                dailog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dailog.show();
+            }
+        });
+        date1=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                to_datepicked=  dayOfMonth+"/"+month+"/"+year;
+                to_date1=year+"-"+month+"-"+dayOfMonth;
+                to_date.setText(to_datepicked);
+                loaddate(datepicked,to_datepicked,facility_name);
 
 
             }
         };
 
 
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reason=ereason.getText().toString();
-                if (datepicked.equals("") || reason.equals("")){
+                if (datepicked.equals("") || reason.equals("") || to_datepicked.equals("")){
                     Toast.makeText(getApplicationContext(),"Please Enter Reason or seletct date",Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -119,7 +156,9 @@ public class SendBookingdata extends AppCompatActivity {
         });
     }
 
-    @Override
+
+
+        @Override
     protected void onResume() {
         super.onResume();
         load();
@@ -136,13 +175,17 @@ public class SendBookingdata extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        if (response.trim().equals("success")) {
 
-                        //If we are getting success from server
-                        Toast.makeText(getApplicationContext(),"Sucessfully Submitted your request",Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                        startActivity(new Intent(SendBookingdata.this,BookingHistory.class));
-                        //Starting profile activity
-
+                            //If we are getting success from server
+                            Toast.makeText(getApplicationContext(), "Sucessfully Submitted your request", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            startActivity(new Intent(SendBookingdata.this, BookingHistory.class));
+                            finish();
+                            //Starting profile activity
+                        }else {
+                            Toast.makeText(SendBookingdata.this, "Some Issue", Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 },
@@ -158,11 +201,10 @@ public class SendBookingdata extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("mem_id", id1);
-                params.put("mem_name", name1);
-                params.put("mob", mno1);
-                params.put("facility", cat);
-                params.put("date",tdate.getText().toString());
+                params.put("mem_user_id", mem_id);
+                params.put("facility_id", facility_id);
+                params.put("date_from",from_date);
+                params.put("date_to",to_date1);
                 params.put("reason", reason);
                 //returning parameter
                 return params;
@@ -225,7 +267,7 @@ public class SendBookingdata extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-    private void loaddate(final String datepicked) {
+    private void loaddate(final String datepicked,final String to_datepicked,final String facility_name) {
 
         //Creating a string request
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_booking_dates,
@@ -260,8 +302,10 @@ public class SendBookingdata extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("email", datepicked);
-                params.put("cat",cat);
+                params.put("mem_user_id", mem_id);
+                params.put("facility_id",facility_id);
+                params.put("date_from",from_date);
+                params.put("date_to",to_date1);
                 //returning parameter
                 return params;
             }

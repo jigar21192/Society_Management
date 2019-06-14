@@ -43,22 +43,23 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountPayment extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
+public class AccountPayment extends AppCompatActivity   {
     String semail;
     //String URL_PRODUCTS="http://pivotnet.co.in/SocietyManagement/Android/pay_rent_android.php";
     //String URL_member="http://pivotnet.co.in/SocietyManagement/Android/fetchmemberdata.php";
     TextView tname,temail,tflatno,tammount,tremaining,twarning;
-    Spinner  spin;
+   // Spinner  spin;
     EditText epaid;
     Button submit;
+    String mem_id;
     String id1,name1,flatno1,flattype1,mno1,mnth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_payment);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        semail = sharedPreferences.getString(Config.EMAIL_SHARED_PREF,"Not Available");
-        load();
+        mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
+       // load();
 
         init();
         printdata();
@@ -79,9 +80,9 @@ public class AccountPayment extends AppCompatActivity  implements AdapterView.On
         tremaining=(TextView)findViewById(R.id.tremaining);
         epaid=(EditText) findViewById(R.id.epaid);
         submit=findViewById(R.id.submit);
-        spin=findViewById(R.id.tmonth);
+       // spin=findViewById(R.id.tmonth);
         epaid.setText("5000");
-        String[] objects = { "January", "Feburary", "March", "April", "May",
+        /*String[] objects = { "January", "Feburary", "March", "April", "May",
                 "June", "July", "August", "September", "October", "November","December" };
 
 // Declaring an Adapter and initializing it to the data pump
@@ -93,7 +94,7 @@ public class AccountPayment extends AppCompatActivity  implements AdapterView.On
 
 // Setting OnItemClickListener to the Spinner
         spin.setOnItemSelectedListener(this);
-
+*/
 
         epaid.addTextChangedListener(new TextWatcher() {
             @Override
@@ -234,7 +235,7 @@ public class AccountPayment extends AppCompatActivity  implements AdapterView.On
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("email", semail);
+                params.put("mem_user_id", mem_id);
                 //returning parameter
                 return params;
             }
@@ -246,16 +247,7 @@ public class AccountPayment extends AppCompatActivity  implements AdapterView.On
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        mnth= spin.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -54,7 +54,8 @@ public class UrlsList {
     public static final String fetch_staff_data=base_url+"Android/fetch_staff.php";
     public static final String insert_complain=base_url+"Android/insert_complaint.php";
     public static final String fetch_complain=base_url+"Android/fetch_complaint.php";
-
+    public static final String fetch_facility=base_url+"Android/fetch_booking.php";
+    public static final String fetch_vehicle=base_url+"Android/fetch_vehicle.php";
 
 
 

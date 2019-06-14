@@ -54,42 +54,13 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Booking uploadCurrent = mUploads.get(position);
-     id=uploadCurrent.getBooking_id();
-        holder.pay_id.setText(uploadCurrent.getBooking_id());
-        holder.pay_month.setText(uploadCurrent.getMem_name());
-       // holder.pay_date.setText(uploadCurrent.getPay_date());
-        //holder.mem_id.setText(uploadCurrent.getMem_id());
-        //holder.mem_name.setText(uploadCurrent.getMem_name());
-       // holder.mem_flat_num.setText(uploadCurrent.getMem_flat_num());
-       // holder.mem_flat_type.setText(uploadCurrent.getMem_flat_type());
-        holder.pay_fixed.setText(uploadCurrent.getFacility());
-        holder.pay_deposit.setText(uploadCurrent.getBooked_date());
-        //holder.pay_remaining.setText(uploadCurrent.getPay_remaining());
-      if (uploadCurrent.getBooked_status().equals("0")) {
-          holder.pay_status.setText(" Pending");
-      }
-      else if (uploadCurrent.getBooked_status().equals("1")){
-          holder.pay_status.setText("Accepted");
-          holder.cancelbooking.setEnabled(false);
-          holder.cancelbooking.setVisibility(View.GONE);
-      }
-      else if (uploadCurrent.getBooked_status().equals("2")){
-          holder.pay_status.setText("Rejected");
-          holder.cancelbooking.setEnabled(false);
-          holder.cancelbooking.setVisibility(View.GONE);
-      }
-      else if (uploadCurrent.getBooked_status().equals("3")){
-          holder.pay_status.setText("Cancelled");
-          holder.cancelbooking.setEnabled(false);
-          holder.cancelbooking.setVisibility(View.GONE);
-      }
-      holder.cancelbooking.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
 
-             loaddate();
-          }
-      });
+        holder.booking_date.setText(uploadCurrent.getBooked_date());
+        holder.facility.setText(uploadCurrent.getFacility());
+        holder.reason.setText(uploadCurrent.getBooking_reason());
+        holder.date.setText(uploadCurrent.getDate_from()+" to "+uploadCurrent.getDate_to());
+        holder.status.setText(uploadCurrent.getBooked_status());
+
     }
 
     @Override
@@ -99,23 +70,23 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  pay_id,pay_date,mem_id,mem_name, mem_flat_num, mem_flat_type, pay_fixed, pay_deposit,pay_remaining, pay_month,pay_status;;
- TextView cancelbooking;
+        public TextView  booking_date,facility,reason,date, status;
+
          public ImageViewHolder(View itemView) {
 
              super(itemView);
-             pay_id = itemView.findViewById(R.id.payid);
+             booking_date = itemView.findViewById(R.id.booking_date);
              //pay_date=itemView.findViewById(R.id.paydate);
            //  mem_id=itemView.findViewById(R.id.memberid);
            //  mem_name=itemView.findViewById(R.id.membername);
-             mem_flat_num=itemView.findViewById(R.id.flatno);
+             facility=itemView.findViewById(R.id.facility);
            //  mem_flat_type=itemView.findViewById(R.id.flattype);
-             pay_fixed=itemView.findViewById(R.id.Ammount);
-             pay_deposit=itemView.findViewById(R.id.deposite);
+             reason=itemView.findViewById(R.id.reason);
+             date=itemView.findViewById(R.id.date);
             // pay_remaining=itemView.findViewById(R.id.remaining);
-             pay_month=itemView.findViewById(R.id.month);
-             pay_status=itemView.findViewById(R.id.status);
-               cancelbooking=itemView.findViewById(R.id.txtcancel);
+             status=itemView.findViewById(R.id.status);
+           /*  pay_status=itemView.findViewById(R.id.status);
+               cancelbooking=itemView.findViewById(R.id.txtcancel);*/
              itemView.setOnClickListener(this);
              itemView.setOnCreateContextMenuListener(this);
          }

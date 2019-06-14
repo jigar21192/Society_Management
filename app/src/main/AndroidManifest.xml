@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,HardcodedDebugMode">
-        <activity android:name=".Staff_Info"></activity>
+        <activity android:name=".Guest_Vehicle"></activity>
+        <activity android:name=".Staff_Info" />
         <activity android:name=".RulesAndRegulation" />
         <activity android:name=".Vendor_Details" />
         <activity

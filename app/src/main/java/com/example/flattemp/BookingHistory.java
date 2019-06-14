@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -50,14 +51,14 @@ public class BookingHistory extends AppCompatActivity {
     RecyclerView eventrecycler;
     BookinghistoryAdaptor reciptAdapter;
     SwipeRefreshLayout pullToRefresh;
-    String id1,semail;
+    String id1,semail,mem_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_history);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        semail = sharedPreferences.getString(Config.EMAIL_SHARED_PREF,"Not Available");
+        mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
 
         pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
 
@@ -66,7 +67,8 @@ public class BookingHistory extends AppCompatActivity {
         eventrecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         reciptlist = new ArrayList<>();
-        load();
+      //  load();
+        loadUsers();
 
 
         //this method will fetch and parse json
@@ -91,6 +93,7 @@ public class BookingHistory extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.e("res","<<<<<<"+response);
 
                         try {
                             //converting the string to json array object
@@ -103,14 +106,16 @@ public class BookingHistory extends AppCompatActivity {
                                 JSONObject user = array.getJSONObject(i);
 // String booking_id,facility,mem_id, mem_name, mem_phone_num,booked_date, booking_reason,booked_status;
                                 reciptlist.add( 0,new Booking(
-                                        user.getString("booking_id"),
                                         user.getString("facility"),
-                                        user.getString("mem_id"),
-                                        user.getString("mem_name"),
-                                        user.getString("mem_phone_num"),
                                         user.getString("booked_date"),
+                                        user.getString("date_from"),
+                                        user.getString("date_to"),
                                         user.getString("booking_reason"),
                                         user.getString("booked_status")
+
+
+
+
                                 ));
 
 
@@ -138,7 +143,7 @@ public class BookingHistory extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("cat",id1);
+                params.put("mem_user_id",mem_id);
                 //returning parameter
                 return params;
             }
