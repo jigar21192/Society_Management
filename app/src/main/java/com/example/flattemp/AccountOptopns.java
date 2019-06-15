@@ -18,7 +18,7 @@ public class AccountOptopns extends AppCompatActivity {
         setContentView(R.layout.activity_account_optopns);
         paymentenence=findViewById(R.id.paymentenece) ;
         monthlyreciept=findViewById(R.id.monthlyreciept);
-        viewstatementself=findViewById(R.id.viewstatementself);
+      //  viewstatementself=findViewById(R.id.viewstatementself);
         viewstatementsociety=findViewById(R.id.viewstatementsociety);
         projectedexpences=findViewById(R.id.projectexpences);
         paymentenence.setOnClickListener(new View.OnClickListener() {
@@ -33,12 +33,12 @@ public class AccountOptopns extends AppCompatActivity {
                 startActivity(new Intent(AccountOptopns.this, ViewRecipt.class));
             }
         });
-        viewstatementself.setOnClickListener(new View.OnClickListener() {
+        /*viewstatementself.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AccountOptopns.this,ViewStatementSelf.class));
             }
-        });
+        });*/
         viewstatementsociety.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

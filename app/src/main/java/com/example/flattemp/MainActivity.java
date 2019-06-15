@@ -307,6 +307,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                             //Adding values to editor
 
                             editor.putString(Config.MEMBER_ID_SHARED_PREF, user.getString("mem_id"));
+
+                            editor.putString(Config.MEMBER_NAME_SHARED_PREF, user.getString("mem_name"));
+
+                            editor.putString(Config.MEMBER_FLAT_SHARED_PREF, user.getString("mem_flat_num"));
                             //Saving values to editor
                             editor.commit();
                         }

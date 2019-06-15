@@ -1,7 +1,9 @@
 package com.example.flattemp.Adaptor;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -39,36 +41,19 @@ public class ReciptAdapter extends RecyclerView.Adapter<ReciptAdapter.ImageViewH
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
-        Recipt uploadCurrent = mUploads.get(position);
+        final Recipt uploadCurrent = mUploads.get(position);
 
-        holder.pay_id.setText(uploadCurrent.getPay_id());
-        holder.pay_month.setText(uploadCurrent.getPay_month());
-       // holder.pay_date.setText(uploadCurrent.getPay_date());
-        //holder.mem_id.setText(uploadCurrent.getMem_id());
-        //holder.mem_name.setText(uploadCurrent.getMem_name());
-       // holder.mem_flat_num.setText(uploadCurrent.getMem_flat_num());
-       // holder.mem_flat_type.setText(uploadCurrent.getMem_flat_type());
-        holder.pay_fixed.setText(uploadCurrent.getPay_fixed());
-        holder.pay_deposit.setText(uploadCurrent.getPay_deposit());
-        //holder.pay_remaining.setText(uploadCurrent.getPay_remaining());
+            holder.date.setText(uploadCurrent.getPay_date());
+            holder.amount.setText(uploadCurrent.getPay_deposit());
 
+            holder.pay_id.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uploadCurrent.getPay_id()));
+                    mContext.startActivity(browserIntent);
+                }
+            });
 
-        if (uploadCurrent.getPay_status().equals("0")){
-            holder.pay_status.setTextColor(Color.parseColor("#2196F3"));;
-            holder.pay_status.setText("Pending");
-
-        }else
-        if (uploadCurrent.getPay_status().equals("1")){
-            holder.pay_status.setTextColor(Color.parseColor("#11EE1A"));;
-            holder.pay_status.setText("Paid");
-
-        }
-        else
-        if (uploadCurrent.getPay_status().equals("2")){
-            holder.pay_status.setTextColor(Color.parseColor("#F30A5B"));;
-            holder.pay_status.setText("Due");
-
-        }
     }
 
     @Override
@@ -78,23 +63,23 @@ public class ReciptAdapter extends RecyclerView.Adapter<ReciptAdapter.ImageViewH
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  pay_id,pay_date,mem_id,mem_name, mem_flat_num, mem_flat_type, pay_fixed, pay_deposit,pay_remaining, pay_month,pay_status;;
+        public TextView  date,amount,pay_id;
 
          public ImageViewHolder(View itemView) {
 
              super(itemView);
-             pay_id = itemView.findViewById(R.id.payid);
+             date = itemView.findViewById(R.id.date);
              //pay_date=itemView.findViewById(R.id.paydate);
            //  mem_id=itemView.findViewById(R.id.memberid);
            //  mem_name=itemView.findViewById(R.id.membername);
-             mem_flat_num=itemView.findViewById(R.id.flatno);
+             amount=itemView.findViewById(R.id.paid_amount);
            //  mem_flat_type=itemView.findViewById(R.id.flattype);
-             pay_fixed=itemView.findViewById(R.id.Ammount);
-             pay_deposit=itemView.findViewById(R.id.deposite);
+             pay_id=itemView.findViewById(R.id.receipt_link);
+             /*pay_deposit=itemView.findViewById(R.id.deposite);
             // pay_remaining=itemView.findViewById(R.id.remaining);
              pay_month=itemView.findViewById(R.id.month);
              pay_status=itemView.findViewById(R.id.status);
-
+*/
              itemView.setOnClickListener(this);
              itemView.setOnCreateContextMenuListener(this);
          }

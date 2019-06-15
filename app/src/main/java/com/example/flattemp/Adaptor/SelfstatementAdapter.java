@@ -39,7 +39,7 @@ public class SelfstatementAdapter extends RecyclerView.Adapter<SelfstatementAdap
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Recipt uploadCurrent = mUploads.get(position);
 
-        holder.pay_id.setText(uploadCurrent.getPay_id());
+       /* holder.pay_id.setText(uploadCurrent.getPay_id());
         holder.pay_month.setText(uploadCurrent.getPay_month());
        // holder.pay_date.setText(uploadCurrent.getPay_date());
         //holder.mem_id.setText(uploadCurrent.getMem_id());
@@ -65,7 +65,7 @@ public class SelfstatementAdapter extends RecyclerView.Adapter<SelfstatementAdap
             holder.pay_status.setTextColor(Color.parseColor("#F30A5B"));;
             holder.pay_status.setText("Due");
 
-        }
+        }*/
     }
 
     @Override

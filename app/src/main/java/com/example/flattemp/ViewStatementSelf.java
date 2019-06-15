@@ -95,7 +95,7 @@ public class ViewStatementSelf extends AppCompatActivity {
                                 //adding the product to product list
                                 // String pay_id,pay_date,mem_id,mem_name, mem_flat_num, mem_flat_type, pay_fixed,
                                 // pay_deposit,pay_remaining, pay_month,pay_status;
-                                reciptlist.add( 0,new Recipt(
+                              /*  reciptlist.add( 0,new Recipt(
                                         user.getString("pay_id"),
                                         user.getString("pay_date"),
                                         user.getString("mem_id"),
@@ -109,7 +109,7 @@ public class ViewStatementSelf extends AppCompatActivity {
                                         user.getString("pay_status")
 
                                 ));
-
+*/
                             }
                             if (pullToRefresh.isRefreshing()) {
                             }

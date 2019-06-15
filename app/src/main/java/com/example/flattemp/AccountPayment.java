@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,11 +48,11 @@ public class AccountPayment extends AppCompatActivity   {
     String semail;
     //String URL_PRODUCTS="http://pivotnet.co.in/SocietyManagement/Android/pay_rent_android.php";
     //String URL_member="http://pivotnet.co.in/SocietyManagement/Android/fetchmemberdata.php";
-    TextView tname,temail,tflatno,tammount,tremaining,twarning;
+    TextView tname,temail,tflatno,tremaining,twarning,last_amount;
    // Spinner  spin;
     EditText epaid;
     Button submit;
-    String mem_id;
+    String mem_id,mem_name,flat_no;
     String id1,name1,flatno1,flattype1,mno1,mnth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,10 @@ public class AccountPayment extends AppCompatActivity   {
         setContentView(R.layout.activity_account_payment);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
-       // load();
+        mem_name = sharedPreferences.getString(Config.MEMBER_NAME_SHARED_PREF,"Not Available");
+        flat_no = sharedPreferences.getString(Config.MEMBER_FLAT_SHARED_PREF,"Not Available");
+
+         load();
 
         init();
         printdata();
@@ -73,15 +77,21 @@ public class AccountPayment extends AppCompatActivity   {
 
     private void init() {
         twarning=findViewById(R.id.twarning);
+        last_amount=findViewById(R.id.last_ammount);
         tname=(TextView)findViewById(R.id.tname);
         temail=(TextView)findViewById(R.id.temail);
         tflatno=(TextView)findViewById(R.id.tflatno);
-        tammount=(TextView)findViewById(R.id.tammount);
+
         tremaining=(TextView)findViewById(R.id.tremaining);
         epaid=(EditText) findViewById(R.id.epaid);
         submit=findViewById(R.id.submit);
        // spin=findViewById(R.id.tmonth);
-        epaid.setText("5000");
+
+
+        tname.setText(mem_name);
+
+        tflatno.setText(flat_no);
+
         /*String[] objects = { "January", "Feburary", "March", "April", "May",
                 "June", "July", "August", "September", "October", "November","December" };
 
@@ -96,45 +106,14 @@ public class AccountPayment extends AppCompatActivity   {
         spin.setOnItemSelectedListener(this);
 */
 
-        epaid.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                String m=epaid.getText().toString();
-                if (!m.isEmpty()) {
-                    Double a = Double.parseDouble(m);
-                    Double b = Double.parseDouble(tammount.getText().toString());
-                    if (a>b){
-                        twarning.setVisibility(View.VISIBLE);
-                        submit.setEnabled(false);
-
-                    }
-                    else{
-                        Double c = b - a;
-                        tremaining.setText(c.toString());
-                        twarning.setVisibility(View.GONE);
-                        submit.setEnabled(true);}
-                }
-                else{
-
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                if (epaid.getText().toString().equals("")){
+                    Toast.makeText(AccountPayment.this, "Please Enter Amount", Toast.LENGTH_SHORT).show();
+                }else {
+                    register();
+                }
             }
         });
     }
@@ -148,11 +127,15 @@ public class AccountPayment extends AppCompatActivity   {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                      //  Log.e("Res",">>>>>>>"+response);
+                        if (response.trim().equals("success")) {
 
-                        //If we are getting success from server
-                        Toast.makeText(getApplicationContext(), "Sucessfully Submitted", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(AccountPayment.this,ViewRecipt.class));
-
+                            //If we are getting success from server
+                            Toast.makeText(getApplicationContext(), "Sucessfully Submitted", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(AccountPayment.this, ViewRecipt.class));
+                        }else {
+                            Toast.makeText(AccountPayment.this, "Some Issue", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -167,14 +150,8 @@ public class AccountPayment extends AppCompatActivity   {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("mem_id", id1);
-                params.put("mem_name",name1);
-                params.put("mem_flat_num",flatno1);
-                params.put("mem_flat_type", flattype1);
-                params.put("pay_fixed",tammount.getText().toString());
-                params.put("pay_remaining",tremaining.getText().toString());
-                params.put("pay_deposit", epaid.getText().toString());
-                params.put("pay_month",mnth);
+                params.put("mem_id", mem_id);
+                params.put("pay_deposit",epaid.getText().toString());
                 //returning parameter
                 return params;
             }
@@ -188,7 +165,7 @@ public class AccountPayment extends AppCompatActivity   {
     private void load() {
 
         //Creating a string request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_members_details_url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_payment,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -196,26 +173,11 @@ public class AccountPayment extends AppCompatActivity   {
                             JSONArray array = new JSONArray(response);
                             JSONObject user = array.getJSONObject(0);
                             // JSONObject user=new JSONObject(response);
-                            id1=user.getString("mem_id");
-                            name1=user.getString("mem_name");
-                            flatno1=user.getString("mem_flat_num");
-                            flattype1=user.getString("mem_flat_type");
-                            mno1=user.getString("mem_phone_num");
 
-                            tname.setText(name1);
-                            temail.setText(flattype1);
-                            tflatno.setText(flatno1);
-                            if (flattype1.equals("1 BHK")){
-                                tammount.setText("5500");
-                            }
-                            else if (flattype1.equals("2 BHK")){
-                                //tammount.setText("5500");
-                                tammount.setText("10500");
-                            }
-                            else if (flattype1.equals("3 BHK")){
-                                //tammount.setText("5500");
-                                tammount.setText("15500");
-                            }
+
+                            last_amount.setText(user.getString("pay_deposit"));
+
+                            tremaining.setText(user.getString("pay_remaining"));
 
                         }
                         catch (JSONException e) {

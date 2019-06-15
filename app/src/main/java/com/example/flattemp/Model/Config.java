@@ -21,6 +21,10 @@ public class Config {
 
     public static final String MEMBER_ID_SHARED_PREF = "mem_id";
 
+    public static final String MEMBER_NAME_SHARED_PREF = "name";
+
+    public static final String MEMBER_FLAT_SHARED_PREF = "flat";
+
     //We will use this to store the boolean in sharedpreference to track user is loggedin or not
     public static final String LOGGEDIN_SHARED_PREF = "loggedin";
 }

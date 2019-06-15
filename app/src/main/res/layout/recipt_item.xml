@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Payment Id :"
+                android:text="Date :"
                 android:textColor="#000"
                 android:textSize="15dp"
                 android:textStyle="bold" />
@@ -31,83 +32,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Payment Id"
+                android:text="Date"
                 android:textColor="#000"
                 android:textSize="15dp"
-                android:id="@+id/payid"/>
+                android:id="@+id/date"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-            <TextView
-                android:padding="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Month :"
-                android:textColor="#000"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-            <TextView
-                android:padding="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Payment Id"
-                android:textColor="#000"
-                android:textSize="15dp"
-                android:id="@+id/month"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-            <TextView
-                android:padding="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Amount( Rent+ Maintanence ):"
-                android:textColor="#000"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-            <TextView
-                android:padding="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="156454"
-                android:textColor="#000"
-                android:textSize="15dp"
-                android:id="@+id/Ammount"/>
-        </LinearLayout>
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <TextView
-            android:padding="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text=" Deposite :"
-            android:textColor="#000"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-        <TextView
-            android:padding="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Deposite"
-            android:textColor="#000"
-            android:textSize="15dp"
-            android:id="@+id/deposite"/>
-    </LinearLayout>
 
         <LinearLayout
         android:layout_width="match_parent"
@@ -119,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Status :"
+            android:text=" Paid Amount :"
             android:textColor="#000"
             android:textSize="15dp"
             android:textStyle="bold" />
@@ -128,10 +57,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Paid or Due"
+            android:text="Amount"
             android:textColor="#000"
             android:textSize="15dp"
-            android:id="@+id/status"/>
+            android:id="@+id/paid_amount"/>
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <TextView
+            android:padding="3dp"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Click Here For Receipt"
+            android:textColor="#E38383"
+            android:textSize="15dp"
+            android:id="@+id/receipt_link"/>
     </LinearLayout>
 
 

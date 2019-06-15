@@ -116,9 +116,9 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Amount :"/>
+            android:text="Last Amount :"/>
         <TextView
-            android:id="@+id/tammount"
+            android:id="@+id/last_ammount"
             android:textSize="20dp"
             android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
@@ -145,7 +145,7 @@
             android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=""/>
+            android:hint="Enter Amount"/>
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="5dp"

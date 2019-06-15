@@ -42,7 +42,7 @@ android:layout_height="match_parent">
             android:foreground="@drawable/monthlyrecipt">
         </android.support.v7.widget.CardView>
     </LinearLayout>
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_marginTop="10dp"
         android:clipToPadding="false"
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@ android:layout_height="match_parent">
             android:clickable="true"
             android:foreground="@drawable/viewsatatementself">
         </android.support.v7.widget.CardView>
-    </LinearLayout>
+    </LinearLayout>-->
     <LinearLayout
         android:clipToPadding="false"
         android:layout_width="match_parent"

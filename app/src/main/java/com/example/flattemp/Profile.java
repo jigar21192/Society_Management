@@ -62,7 +62,7 @@ public class Profile extends AppCompatActivity {
         load();
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Adding our menu to toolbar
         getMenuInflater().inflate(R.menu.profile_menu, menu);
@@ -78,7 +78,7 @@ public class Profile extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+*/
 
     private void load() {
 
@@ -96,7 +96,7 @@ public class Profile extends AppCompatActivity {
                             flatno=user.getString("mem_flat_num");
                             flattype =user.getString("mem_flat_type");
                             mobno=user.getString("mem_phone_num");
-                            Toast.makeText(getApplicationContext(),name+imgurl,Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getApplicationContext(),name+imgurl,Toast.LENGTH_SHORT).show();
                             tname.setText(name);
                             tflatno.setText(flatno);
                             tflattype.setText(flattype);

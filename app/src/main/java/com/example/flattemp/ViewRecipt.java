@@ -53,7 +53,7 @@ public class ViewRecipt extends AppCompatActivity {
     ReciptAdapter reciptAdapter;
     SwipeRefreshLayout pullToRefresh;
     String semail;
-    String id1;
+    String id1,mem_id;
 
 
 
@@ -62,8 +62,8 @@ public class ViewRecipt extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_recipt);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        semail = sharedPreferences.getString(Config.EMAIL_SHARED_PREF,"Not Available");
-        load();
+        mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
+        //load();
         pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
 
         eventrecycler = findViewById(R.id.eventrecycle);
@@ -76,7 +76,7 @@ public class ViewRecipt extends AppCompatActivity {
         //this method will fetch and parse json
         //to display it in recyclerview
 
-
+        loadUsers();
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -110,15 +110,7 @@ public class ViewRecipt extends AppCompatActivity {
                                 reciptlist.add( 0,new Recipt(
                                         user.getString("pay_id"),
                                         user.getString("pay_date"),
-                                        user.getString("mem_id"),
-                                        user.getString("mem_name"),
-                                        user.getString("mem_flat_num"),
-                                        user.getString("mem_flat_type"),
-                                        user.getString("pay_fixed"),
-                                        user.getString("pay_deposit"),
-                                        user.getString("pay_remaining"),
-                                        user.getString("pay_month"),
-                                        user.getString("pay_status")
+                                        user.getString("pay_deposit")
 
                                 ));
 
@@ -147,7 +139,7 @@ public class ViewRecipt extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("cat", id1);
+                params.put("mem_user_id", mem_id);
                 //returning parameter
                 return params;
             }
