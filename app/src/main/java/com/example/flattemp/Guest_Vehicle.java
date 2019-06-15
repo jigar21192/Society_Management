@@ -114,7 +114,7 @@ public class Guest_Vehicle extends AppCompatActivity {
 
                         //Putting blank value to email
                         editor.putString(Config.EMAIL_SHARED_PREF, "");
-
+                        editor.clear();
                         //Saving the sharedpreferences
                         editor.commit();
 
