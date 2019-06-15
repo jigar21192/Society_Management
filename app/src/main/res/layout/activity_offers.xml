@@ -5,144 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Offers">
-    android:padding="10dp">
-    <ScrollView
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:id="@+id/eventrecycle"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/posts"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer3">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/halloffame"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer2">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <android.support.v7.widget.CardView
-                    android:id="@+id/offers"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer1">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer3">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer2">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <android.support.v7.widget.CardView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer1">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer3">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer2">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:clipToPadding="false"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <android.support.v7.widget.CardView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:clickable="true"
-                    android:foreground="@drawable/offer1">
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
 </RelativeLayout>

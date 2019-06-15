@@ -58,6 +58,8 @@ public class UrlsList {
     public static final String fetch_vehicle=base_url+"Android/fetch_vehicle.php";
     public static final String fetch_payment=base_url+"Android/fetchpayment.php";
     public static final String fetch_society=base_url+"Android/fetch_society.php";
+    public static final String fetch_hall_of_fame=base_url+"Android/fetch_hall_of_fame.php";
+   public static final String fetch_Offer=base_url+"Android/fetch_offers.php";
 
 
 
