@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     CardView las,aandp,fandb,official,kys,bb,help;
     private boolean loggedIn = false;
     String semail;
+    private View navHeader;
+    TextView society_name,society_address;
     @Override
     protected void onResume() {
         super.onResume();
@@ -87,12 +89,16 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         textView = (TextView) findViewById(R.id.textView);
         textview2=findViewById(R.id.textView2);
 
+        navHeader = navigationView.getHeaderView(0);
+        //txtName = (TextView) navHeader.findViewById(R.id.name);
+        society_name=navHeader.findViewById(R.id.society_name);
+        society_address=navHeader.findViewById(R.id.society_address);
         //Fetching email from shared preferences
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
          semail = sharedPreferences.getString(Config.EMAIL_SHARED_PREF,"Not Available");
           load();
         //Showing the current logged in email to textview
-        textView.setText(semail);
+
 
         las=findViewById(R.id.las);
         aandp=findViewById(R.id.aandp);
@@ -308,8 +314,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
                             editor.putString(Config.MEMBER_ID_SHARED_PREF, user.getString("mem_id"));
 
+                            load_society_data(user.getString("mem_id"));
+
                             editor.putString(Config.MEMBER_NAME_SHARED_PREF, user.getString("mem_name"));
 
+                            textView.setText(user.getString("mem_name"));
                             editor.putString(Config.MEMBER_FLAT_SHARED_PREF, user.getString("mem_flat_num"));
                             //Saving values to editor
                             editor.commit();
@@ -331,6 +340,47 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
                 params.put("email", semail);
+                //returning parameter
+                return params;
+            }
+        };
+
+        //Adding the string request to the queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+    private void load_society_data(final String mem_id) {
+        //String URL_member="http://pivotnet.co.in/SocietyManagement/Android/fetchmemberdata.php";
+        //Creating a string request
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_society,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray array = new JSONArray(response);
+                            JSONObject user = array.getJSONObject(0);
+                            // JSONObject user=new JSONObject(response);
+
+                            society_name.setText(user.getString("name"));
+                            society_address.setText(user.getString("address "));
+                        }
+                        catch (JSONException e) {
+                            // Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //You can handle error here if you want
+                         Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                //Adding parameters to request
+                params.put("mem_user_id",mem_id);
                 //returning parameter
                 return params;
             }

@@ -22,6 +22,7 @@
         android:src="@mipmap/ic_logo" />
 
     <TextView
+        android:id="@+id/society_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -32,7 +33,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/society_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gota"

@@ -57,6 +57,7 @@ public class UrlsList {
     public static final String fetch_facility=base_url+"Android/fetch_booking.php";
     public static final String fetch_vehicle=base_url+"Android/fetch_vehicle.php";
     public static final String fetch_payment=base_url+"Android/fetchpayment.php";
+    public static final String fetch_society=base_url+"Android/fetch_society.php";
 
 
 
