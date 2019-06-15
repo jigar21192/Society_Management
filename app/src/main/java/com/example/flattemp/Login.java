@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     //Defining views
     private EditText editTextEmail;
     private EditText editTextPassword;
-    TextView linksignup,signupadmin;
+    TextView admin_login;
     private AppCompatButton buttonLogin;
 
     //boolean variable to check user is logged in or not
@@ -48,13 +48,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         progressDialog=new ProgressDialog(Login.this);
         progressDialog.setMessage("Please Wait while Login....");
 
-      /*  signupadmin=findViewById(R.id.linkSignupadmin);
-        signupadmin.setOnClickListener(new View.OnClickListener() {
+        admin_login=findViewById(R.id.admin_login);
+        admin_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Login.this,Adminweb.class));
             }
-        });*/
+        });
         //Initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
