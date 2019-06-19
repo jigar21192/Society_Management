@@ -60,12 +60,14 @@ public class UrlsList {
     public static final String fetch_society=base_url+"Android/fetch_society.php";
     public static final String fetch_hall_of_fame=base_url+"Android/fetch_hall_of_fame.php";
    public static final String fetch_Offer=base_url+"Android/fetch_offers.php";
+    public static final String fetch_Society_Statement=base_url+"Android/fetch_statement.php";
+    public static final String fetch_Society_expense=base_url+"Android/fetch_expense.php";
 
 
 
 
 
-   //send
+    //send
     public static final String pay_rent_url=base_url+"Android/pay_rent_android.php";
     public static final String  update_profile_data_url=base_url+"admin/upload_profile.php";
     public static final String   update_profilepic_url=base_url+"admin/uploadprofilepic.php";

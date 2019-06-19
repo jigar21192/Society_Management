@@ -1,6 +1,8 @@
 package com.example.flattemp.Adaptor;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -36,24 +38,16 @@ public class View_Statement_Adapter extends RecyclerView.Adapter<View_Statement_
         final View_Statement_Model model = mUploads.get(position);
 
 
-        holder.exp_name.setText("Society Expences Name is "+model.getExp_name());
-        holder.exp_date.setText("Society Expences On Date "+model.getExp_date());
-        holder.exp_amount.setText("Society Expences Amount is "+model.getExp_amount());
+        holder.date.setText(model.getPay_date());
+        holder.amount.setText(model.getPay_deposit());
 
-
-      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.pay_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String img=uploadCurrent.getGallery_img();
-                String  name=uploadCurrent.getGallery_img_name();
-                Intent i= new Intent(mContext, Shoesingleimage.class);
-                i.putExtra("img",imgurl);
-                i.putExtra("name",name);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(i);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(model.getPay_id()));
+                mContext.startActivity(browserIntent);
             }
-        });*/
-    }
+        });  }
 
     @Override
     public int getItemCount() {
@@ -62,15 +56,22 @@ public class View_Statement_Adapter extends RecyclerView.Adapter<View_Statement_
 
     public class NoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView exp_name,exp_date,exp_amount;
-        public ImageView imageView;
+        public TextView  date,amount,pay_id;
         public NoticeViewHolder(View itemView) {
 
             super(itemView);
-            exp_name = itemView.findViewById(R.id.exp_name);
-            exp_date = itemView.findViewById(R.id.exp_date);
-            exp_amount = itemView.findViewById(R.id.exp_amount);
-            itemView.setOnClickListener(this);
+            date = itemView.findViewById(R.id.date);
+            //pay_date=itemView.findViewById(R.id.paydate);
+            //  mem_id=itemView.findViewById(R.id.memberid);
+            //  mem_name=itemView.findViewById(R.id.membername);
+            amount=itemView.findViewById(R.id.paid_amount);
+            //  mem_flat_type=itemView.findViewById(R.id.flattype);
+            pay_id=itemView.findViewById(R.id.receipt_link);
+             /*pay_deposit=itemView.findViewById(R.id.deposite);
+            // pay_remaining=itemView.findViewById(R.id.remaining);
+             pay_month=itemView.findViewById(R.id.month);
+             pay_status=itemView.findViewById(R.id.status);
+*/            itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
         }
 

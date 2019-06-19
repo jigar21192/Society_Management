@@ -79,7 +79,7 @@ public class ViewStatementSociety extends AppCompatActivity implements  View_Sta
 
     private void loadData() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_notice,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_Society_Statement,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -94,15 +94,13 @@ public class ViewStatementSociety extends AppCompatActivity implements  View_Sta
                                 //getting product object from json array
                                 JSONObject user = array.getJSONObject(i);
 
-/*
 
                                 eventlist.add(0, new View_Statement_Model(
-                                        user.getString("notice_id"),
-                                        user.getString("update_notice"),
-                                        user.getString("update_date")
+                                        user.getString("pay_id"),
+                                        user.getString("pay_date"),
+                                        user.getString("pay_deposit")
                                 ));
 
-*/
 
                             }
                             if (pullToRefresh.isRefreshing()) {

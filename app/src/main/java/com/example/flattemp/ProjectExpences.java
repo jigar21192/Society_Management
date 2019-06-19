@@ -75,7 +75,7 @@ public class ProjectExpences extends AppCompatActivity implements  Project_Expen
 
     private void loadData() {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_notice,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_Society_expense,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -90,12 +90,11 @@ public class ProjectExpences extends AppCompatActivity implements  Project_Expen
                                 //getting product object from json array
                                 JSONObject user = array.getJSONObject(i);
 
-/*
-                                eventlist.add(0, new Notice_Model(
-                                        user.getString("notice_id"),
-                                        user.getString("update_notice"),
-                                        user.getString("update_date")
-                                ));*/
+                                eventlist.add(0, new Project_Expences_Model(
+                                        user.getString("projected_expenses_name"),
+                                        user.getString("projected_expenses_publish"),
+                                        user.getString("projected_expenses_amount")
+                                ));
 
 
                             }

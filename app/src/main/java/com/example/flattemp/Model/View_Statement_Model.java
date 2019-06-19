@@ -2,36 +2,36 @@ package com.example.flattemp.Model;
 
 public class View_Statement_Model {
 
-    String exp_name,exp_date,exp_amount;
+    String pay_id,pay_date,pay_deposit;
 
-    public String getExp_name() {
-        return exp_name;
+    public String getPay_id() {
+        return pay_id;
     }
 
-    public void setExp_name(String exp_name) {
-        this.exp_name = exp_name;
+    public void setPay_id(String pay_id) {
+        this.pay_id = pay_id;
     }
 
-    public String getExp_date() {
-        return exp_date;
+    public String getPay_date() {
+        return pay_date;
     }
 
-    public void setExp_date(String exp_date) {
-        this.exp_date = exp_date;
+    public void setPay_date(String pay_date) {
+        this.pay_date = pay_date;
     }
 
-    public String getExp_amount() {
-        return exp_amount;
+    public String getPay_deposit() {
+        return pay_deposit;
     }
 
-    public void setExp_amount(String exp_amount) {
-        this.exp_amount = exp_amount;
+    public void setPay_deposit(String pay_deposit) {
+        this.pay_deposit = pay_deposit;
     }
 
-    public View_Statement_Model(String exp_name, String exp_date, String exp_amount) {
-        this.exp_name = exp_name;
-        this.exp_date = exp_date;
-        this.exp_amount = exp_amount;
+    public View_Statement_Model(String pay_id, String pay_date, String pay_deposit) {
+        this.pay_id = pay_id;
+        this.pay_date = pay_date;
+        this.pay_deposit = pay_deposit;
     }
 }
 
