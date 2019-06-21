@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Polls extends AppCompatActivity {
+public class  Polls extends AppCompatActivity {
     TextView tquestion;
     String pollid,selectedpoll,selectedpollid;
 ArrayList<String> rbutton;

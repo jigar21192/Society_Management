@@ -51,7 +51,7 @@
         <activity
             android:name=".ViewStatementSociety"
             android:parentActivityName=".AccountOptopns"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ViewStatementSelf"
             android:parentActivityName=".AccountOptopns"

@@ -48,7 +48,9 @@ public class ViewStatementSociety extends AppCompatActivity implements  View_Sta
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_view_statement_society);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
@@ -96,9 +98,10 @@ public class ViewStatementSociety extends AppCompatActivity implements  View_Sta
 
 
                                 eventlist.add(0, new View_Statement_Model(
-                                        user.getString("pay_id"),
+                                        user.getString("mem_name"),
                                         user.getString("pay_date"),
-                                        user.getString("pay_deposit")
+                                        user.getString("pay_deposit"),
+                                        user.getString("type")
                                 ));
 
 

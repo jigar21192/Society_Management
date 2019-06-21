@@ -2,14 +2,14 @@ package com.example.flattemp.Model;
 
 public class View_Statement_Model {
 
-    String pay_id,pay_date,pay_deposit;
+    String mem_name,pay_date,pay_deposit,type;
 
-    public String getPay_id() {
-        return pay_id;
+    public String getMem_name() {
+        return mem_name;
     }
 
-    public void setPay_id(String pay_id) {
-        this.pay_id = pay_id;
+    public void setMem_name(String mem_name) {
+        this.mem_name = mem_name;
     }
 
     public String getPay_date() {
@@ -28,10 +28,19 @@ public class View_Statement_Model {
         this.pay_deposit = pay_deposit;
     }
 
-    public View_Statement_Model(String pay_id, String pay_date, String pay_deposit) {
-        this.pay_id = pay_id;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public View_Statement_Model(String mem_name, String pay_date, String pay_deposit, String type) {
+        this.mem_name = mem_name;
         this.pay_date = pay_date;
         this.pay_deposit = pay_deposit;
+        this.type = type;
     }
 }
 

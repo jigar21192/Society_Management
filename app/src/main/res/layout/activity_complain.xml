@@ -16,6 +16,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
+
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +54,10 @@
             android:background="@drawable/capsule_edit"
             android:gravity="center"
             android:hint="Enter Details"
-            tools:ignore="MissingConstraints" />
+            android:textAlignment="viewStart"
+            android:textAllCaps="true"
+            android:textColorHint="@color/black"
+            tools:ignore="MissingConstraints,RtlCompat" />
 
         <Button
             android:id="@+id/submit_complain"
