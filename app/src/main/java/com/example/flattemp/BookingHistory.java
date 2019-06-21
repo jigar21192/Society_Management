@@ -111,7 +111,8 @@ public class BookingHistory extends AppCompatActivity {
                                         user.getString("date_from"),
                                         user.getString("date_to"),
                                         user.getString("booking_reason"),
-                                        user.getString("booked_status")
+                                        user.getString("booked_status"),
+                                        user.getString("booking_id")
 
 
 

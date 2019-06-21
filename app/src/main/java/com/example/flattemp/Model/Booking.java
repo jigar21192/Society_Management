@@ -1,7 +1,7 @@
 package com.example.flattemp.Model;
 
 public class Booking {
-    String facility,booked_date,date_from,date_to,booking_reason,booked_status;
+    String facility,booked_date,date_from,date_to,booking_reason,booked_status,booking_id;
 
     public String getFacility() {
         return facility;
@@ -51,12 +51,21 @@ public class Booking {
         this.booked_status = booked_status;
     }
 
-    public Booking(String facility, String booked_date, String date_from, String date_to, String booking_reason, String booked_status) {
+    public String getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBooking_id(String booking_id) {
+        this.booking_id = booking_id;
+    }
+
+    public Booking(String facility, String booked_date, String date_from, String date_to, String booking_reason, String booked_status, String booking_id) {
         this.facility = facility;
         this.booked_date = booked_date;
         this.date_from = date_from;
         this.date_to = date_to;
         this.booking_reason = booking_reason;
         this.booked_status = booked_status;
+        this.booking_id = booking_id;
     }
 }

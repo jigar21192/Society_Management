@@ -1,8 +1,10 @@
 package com.example.flattemp.Adaptor;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,6 +27,10 @@ import com.example.flattemp.Model.Config;
 import com.example.flattemp.Model.Recipt;
 import com.example.flattemp.Model.UrlsList;
 import com.example.flattemp.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,13 +59,62 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
-        Booking uploadCurrent = mUploads.get(position);
+        final Booking uploadCurrent = mUploads.get(position);
 
         holder.booking_date.setText(uploadCurrent.getBooked_date());
         holder.facility.setText(uploadCurrent.getFacility());
         holder.reason.setText(uploadCurrent.getBooking_reason());
         holder.date.setText(uploadCurrent.getDate_from()+" to "+uploadCurrent.getDate_to());
-        holder.status.setText(uploadCurrent.getBooked_status());
+
+        if (uploadCurrent.getBooked_status().trim().equals("0")) {
+            holder.status.setText("Booked");
+        }else {
+            holder.status.setText("Booking Cancel");
+            holder.txtcancel.setVisibility(View.GONE);
+        }
+
+        holder.txtcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.cancel_facility_booking,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if (response.trim().equals("success")){
+                                    Toast.makeText(mContext, "SuccessFull Cancel", Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(mContext,BookingHistory.class);
+                                    mContext.startActivity(intent);
+                                    ((Activity)mContext).finish();
+
+                                }else {
+                                    Toast.makeText(mContext, "Some Problem", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(mContext,error.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+                ){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params = new HashMap<>();
+                        //Adding parameters to request
+                        params.put("mem_user",uploadCurrent.getBooking_id());
+                        //returning parameter
+                        return params;
+                    }
+                };
+
+                //adding our stringrequest to queue
+                Volley.newRequestQueue(mContext).add(stringRequest);
+
+
+            }
+        });
 
     }
 
@@ -70,7 +125,7 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  booking_date,facility,reason,date, status;
+        public TextView  booking_date,facility,reason,date, status,txtcancel;
 
          public ImageViewHolder(View itemView) {
 
@@ -85,6 +140,7 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
              date=itemView.findViewById(R.id.date);
             // pay_remaining=itemView.findViewById(R.id.remaining);
              status=itemView.findViewById(R.id.status);
+             txtcancel=itemView.findViewById(R.id.txtcancel);
            /*  pay_status=itemView.findViewById(R.id.status);
                cancelbooking=itemView.findViewById(R.id.txtcancel);*/
              itemView.setOnClickListener(this);

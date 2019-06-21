@@ -62,6 +62,7 @@ public class UrlsList {
    public static final String fetch_Offer=base_url+"Android/fetch_offers.php";
     public static final String fetch_Society_Statement=base_url+"Android/fetch_statement.php";
     public static final String fetch_Society_expense=base_url+"Android/fetch_expense.php";
+    public static final String cancel_facility_booking=base_url+"Android/cancel_booking.php";
 
 
 
