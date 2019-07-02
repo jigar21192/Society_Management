@@ -1,7 +1,9 @@
 package com.example.flattemp;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -30,210 +32,163 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class  Polls extends AppCompatActivity {
-    TextView tquestion;
-    String pollid,selectedpoll,selectedpollid;
-ArrayList<String> rbutton;
-ArrayList<String> roption;
-Button  vote,result;
-RadioGroup radioGroup;
 
-RadioButton radioButton,radioButton1,radioButton2,radioButton3,radioButton4;
+
+Button pre,next;
+    ViewPager mViewPager;
+    private int currentPage = 0;
+    String question,ans1,ans2,ans3,ans4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polls);
-        tquestion=findViewById(R.id.tquestion);
-        rbutton=new ArrayList<>();
-        roption=new ArrayList<>();
-        tquestion.setText("");
-        load();
-
-        vote=findViewById(R.id.bvote);
 
 
-    }
 
+        pre=findViewById(R.id.pre);
+        next=findViewById(R.id.next);
 
-    private void load() {
-        //String URL_member="http://pivotnet.co.in/SocietyManagement/Android/fetch_poll_question.php";
-        //Creating a string request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_poll_question,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONArray array = new JSONArray(response);
-                            JSONObject user = array.getJSONObject(0);
-                            // JSONObject user=new JSONObject(response);
-                            tquestion.setText(user.getString("subject"));
-                            pollid=user.getString("id");
-                            loadUsers();
+        getdata();
 
-
-                        }
-                        catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                        //You can handle error here if you want
-                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
-                    }
-                }){
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mViewPager.setOnTouchListener(new View.OnTouchListener()
+        {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                //Adding parameters to request
-                params.put("email", "gh");
-                //returning parameter
-                return params;
-            }
-        };
-
-        //Adding the string request to the queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-    private void loadUsers() {
-
-//String URL_PRODUCTS="http://pivotnet.co.in/SocietyManagement/Android/fetch_poll_options.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.fetch_poll_option,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            //converting the string to json array object
-                            JSONArray array = new JSONArray(response);
-                            // Toast.makeText(getActivity(),"entered"+array.length(),Toast.LENGTH_SHORT).show();
-                            //traversing through all the object
-                            for (int i = 0; i < array.length(); i++) {
-
-                                //getting product object from json array
-                                JSONObject user = array.getJSONObject(i);
-                                 rbutton.add(user.getString("name"));
-                                roption.add(user.getString("id"));
-                                //adding the product to product list
-                                // String pay_id,pay_date,mem_id,mem_name, mem_flat_num, mem_flat_type, pay_fixed,
-                                // pay_deposit,pay_remaining, pay_month,pay_status;
-
-                            }
-
-
-                            toast();
-                            //creating adapter object and setting it to recyclerview
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-            }
-        }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                //Adding parameters to request
-                params.put("id", pollid);
-                //returning parameter
-                return params;
-            }
-        };
-
-        //adding our stringrequest to queue
-        Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
-    }
-
-    void toast(){
-        radioGroup=findViewById(R.id.radioGroup);
-        radioButton1=findViewById(R.id.radio1);
-         radioButton2=findViewById(R.id.radio2);
-        radioButton3=findViewById(R.id.radio3);
-     radioButton4=findViewById(R.id.radio4);
-
-
-        radioButton1.setText(rbutton.get(0));
-        radioButton2.setText(rbutton.get(1));
-        radioButton3.setText(rbutton.get(2));
-        radioButton4.setText(rbutton.get(3));
-        vote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-votepoll();
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                return true;
             }
         });
 
 
+        next.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                pre.setVisibility(View.VISIBLE);
+                if(currentPage==mViewPager.getAdapter().getCount()-1){
+
+                    next.setVisibility(View.GONE);
+                }
+                currentPage++;
+              //  que++;
+              //  available_q.setText(String.valueOf(que));
+
+                mViewPager.setCurrentItem(getItem(+1));
+
+              /*  currentPage++;
+                que++;
+                available_q.setText(String.valueOf(que));
+                mViewPager.setCurrentItem(getItem(+1)); //getItem(-1) for previous*/
+            }
+        });
+
+        pre.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                next.setVisibility(View.VISIBLE);
+                if(currentPage==1){
+
+                    pre.setVisibility(View.GONE);
+                }
+                currentPage--;
+           //     que--;
+             //   available_q.setText(String.valueOf(que));
+
+                mViewPager.setCurrentItem(getItem(-1));
+
+                /*currentPage--;
+                que--;
+                available_q.setText(String.valueOf(que));
+                mViewPager.setCurrentItem(getItem(-1)); //getItem(-1) for previous*/
+            }
+        });
+
     }
 
+    private int getItem(int i) {
 
 
-    public void checkreadio(View view) {
-        int bid=radioGroup.getCheckedRadioButtonId();
 
-        radioButton=findViewById(bid);
-        selectedpoll=radioButton.getText().toString();
-
-        if (bid == R.id.radio1){
-            selectedpollid=roption.get(0);
-        }
-        else if (bid == R.id.radio2){
-            selectedpollid=roption.get(1);
-            Toast.makeText(getApplicationContext(),selectedpollid,Toast.LENGTH_SHORT).show();
-        }
-        else
-        if (bid == R.id.radio3){
-            selectedpollid=roption.get(2);
-            Toast.makeText(getApplicationContext(),selectedpollid,Toast.LENGTH_SHORT).show();
-        }
-        else
-        if (bid == R.id.radio4){
-            selectedpollid=roption.get(3);
-            Toast.makeText(getApplicationContext(),selectedpollid,Toast.LENGTH_SHORT).show();
-        }
-
-
+        return mViewPager.getCurrentItem() + i;
     }
 
+    private void getdata(){
+        StringRequest request = new StringRequest(Request.Method.POST, "", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-    private void votepoll() {
+                try {
+                    JSONArray array=new JSONArray(response);
 
-        //String URL_PRODUCTS="http://pivotnet.co.in/SocietyManagement/Android/vote_poll.php";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.vote_poll_url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getApplicationContext(),"sucessfully",Toast.LENGTH_SHORT).show();
+                    for (int i=0;i<array.length();i++){
+                        JSONObject object=array.getJSONObject(i);
+/*
+                        question=object.getString("question");
+                        answer=object.getString("answer");
+                        ans1=object.getString("ans1");
+                        ans2=object.getString("ans2");
+                        ans3=object.getString("ans3");
+                        ans4=object.getString("ans4");
+
+                        Model model=new Model();
+                        model.setQuestion(question);
+                        model.setAns(answer);
+                        model.setAns1(ans1);
+                        model.setAns2(ans2);
+                        model.setAns3(ans3);
+                        model.setAns4(ans4);
+
+                        list.add(model);*/
+
+                        // Base_Adapter1 base_adapter=new Base_Adapter1(Final_quiz.this,list);
+                        // listView.setAdapter(base_adapter);
+
+
                     }
-                }, new Response.ErrorListener() {
+/*
+
+                    adapterView = new ImageAdapter(Final_quiz.this,list);
+
+                    mViewPager.setAdapter(adapterView);
+
+                    que_total=String.valueOf(mViewPager.getAdapter().getCount());
+                    total_que.setText(que_total);
+
+
+                    Toast.makeText(Final_quiz.this, String.valueOf(adapterView.sc), Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(Final_quiz.this, String.valueOf(mViewPager.getAdapter().getCount()-1), Toast.LENGTH_SHORT).show();
+
+
+*/
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+              //  pd.dismiss();
+              //  Toast.makeText(Final_quiz.this, error.toString(), Toast.LENGTH_SHORT).show();
+
             }
-        }
-        ){
+        }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                //Adding parameters to request
-                params.put("id", selectedpollid);
-                params.put("pid", pollid);
-                //returning parameter
-                return params;
+                Map<String,String>param=new HashMap<>();
+              //  param.put("name",sub);
+
+
+                return param;
             }
         };
 
-        //adding our stringrequest to queue
-        Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
+        RequestQueue queue= Volley.newRequestQueue(Polls.this);
+        queue.add(request);
     }
 }

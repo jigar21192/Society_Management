@@ -1,7 +1,7 @@
 package com.example.flattemp.Model;
 
 public class Recipt {
-    String pay_id,pay_date,pay_deposit;
+    String pay_id,pay_date,pay_deposit,pay_status;
 
     public String getPay_id() {
         return pay_id;
@@ -27,9 +27,18 @@ public class Recipt {
         this.pay_deposit = pay_deposit;
     }
 
-    public Recipt(String pay_id, String pay_date, String pay_deposit) {
+    public String getPay_status() {
+        return pay_status;
+    }
+
+    public void setPay_status(String pay_status) {
+        this.pay_status = pay_status;
+    }
+
+    public Recipt(String pay_id, String pay_date, String pay_deposit, String pay_status) {
         this.pay_id = pay_id;
         this.pay_date = pay_date;
         this.pay_deposit = pay_deposit;
+        this.pay_status = pay_status;
     }
 }

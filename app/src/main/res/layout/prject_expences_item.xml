@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/exp_name"
+        android:textColor="#000"
         android:text="Expences Name"/>
 
     <TextView
@@ -21,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/exp_date"
+        android:textColor="#000"
         android:text="Expences Date"/>
     <TextView
         android:textSize="20dp"
@@ -28,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/exp_amount"
+        android:textColor="#000"
         android:text="Amount"/>
 
     <!--<RelativeLayout

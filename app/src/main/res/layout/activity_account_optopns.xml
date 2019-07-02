@@ -75,6 +75,20 @@ android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <android.support.v7.widget.CardView
+            android:id="@+id/viewstatementself"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:clickable="true"
+            android:foreground="@drawable/viewsatatementself">
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:clipToPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <android.support.v7.widget.CardView
             android:id="@+id/projectexpences"
             android:layout_width="match_parent"
             android:layout_height="200dp"

@@ -74,10 +74,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Click Here For Receipt"
+            android:text="Pending Confirmation"
             android:textColor="#E38383"
             android:textSize="15dp"
-            android:id="@+id/receipt_link"/>
+            android:id="@+id/status"/>
     </LinearLayout>
 
 

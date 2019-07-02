@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,96 +8,68 @@
     android:padding="10dp">
 
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/tquestion"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your questsvwssssss ssssssvvvvv vvvvd fion ? "/>
-    <View
-        android:id="@+id/view"
-        android:layout_below="@+id/tquestion"
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:background="#B8B894" />
     <LinearLayout
-        android:id="@+id/llr"
-        android:layout_below="@+id/view"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RadioGroup
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.551"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/pre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioGroup">
+            android:text="Pre" />
 
-            <RadioButton
-                android:onClick="checkreadio"
-                android:id="@+id/radio1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:checked="false"
-                android:textSize="20dp" />
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-            <RadioButton
-                android:onClick="checkreadio"
-                android:id="@+id/radio2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="20dp"
-                android:checked="false"
-                android:textSize="20dp" />
-            <RadioButton
-                android:onClick="checkreadio"
-                android:id="@+id/radio3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="10dp"
-                android:checked="false"
-                android:textSize="20dp" />
-
-            <RadioButton
-                android:onClick="checkreadio"
-                android:id="@+id/radio4"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:checked="false"
-                android:textSize="20dp" />
-        </RadioGroup>
+            android:text="Next" />
     </LinearLayout>
-    <LinearLayout
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/llr"
-        android:layout_width="match_parent"
+
+    <Button
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/bvote"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:background="@drawable/btn_shape"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Vote"/>
-        <Button
-            android:id="@+id/bresult"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:background="@drawable/btn_shape"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Result"/>
+        android:layout_marginBottom="8dp"
+        android:text="Result"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.647"
+        tools:ignore="MissingConstraints" />
 
-    </LinearLayout>
 
-</RelativeLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -40,7 +40,7 @@ public class UrlsList {
     public static final String  fetct_gallry_img_url=base_url+"Android/fetchgallery.php";
     public static final String   fetch_gallery_cat_url=base_url+"Android/fetchgallerycat.php";
     public static final String  fetch_poll_option=base_url+"Android/fetch_poll_options.php";
-     public static final String fetch_poll_question=base_url+"Android/fetch_poll_question.php";
+    public static final String fetch_poll_question=base_url+"Android/fetch_poll_question.php";
     public static final String fetch_upcoming_events=base_url+"Android/fetchupcomingevents.php";
     public static final String  fetch_chairmans_message=base_url+"Android/fetchchairmanmsg.php";
     public static final String fetch_booking_dates=base_url+"Android/fetch_booking_date.php";
@@ -59,7 +59,7 @@ public class UrlsList {
     public static final String fetch_payment=base_url+"Android/fetchpayment.php";
     public static final String fetch_society=base_url+"Android/fetch_society.php";
     public static final String fetch_hall_of_fame=base_url+"Android/fetch_hall_of_fame.php";
-   public static final String fetch_Offer=base_url+"Android/fetch_offers.php";
+    public static final String fetch_Offer=base_url+"Android/fetch_offers.php";
     public static final String fetch_Society_Statement=base_url+"Android/fetch_statement.php";
     public static final String fetch_Society_expense=base_url+"Android/fetch_expense.php";
     public static final String cancel_facility_booking=base_url+"Android/cancel_booking.php";

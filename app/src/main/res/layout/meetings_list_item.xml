@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/m_date"
+        android:textColor="#000000"
         android:text="Complain Type"/>
 
     <TextView
@@ -21,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/m_title"
+        android:textColor="#000000"
         android:text="Complain Remarks"/>
     <TextView
         android:textSize="20dp"
@@ -28,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/m_desc"
+        android:textColor="#000000"
         android:text="Complain Reply"/>
 
     <!--<RelativeLayout

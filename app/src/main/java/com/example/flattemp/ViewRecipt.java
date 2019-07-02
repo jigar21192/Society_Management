@@ -110,7 +110,8 @@ public class ViewRecipt extends AppCompatActivity {
                                 reciptlist.add( 0,new Recipt(
                                         user.getString("pay_id"),
                                         user.getString("pay_date"),
-                                        user.getString("pay_deposit")
+                                        user.getString("pay_deposit"),
+                                        user.getString("pay_status")
 
                                 ));
 

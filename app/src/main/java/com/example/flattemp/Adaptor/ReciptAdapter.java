@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.flattemp.Model.Recipt;
 import com.example.flattemp.R;
@@ -43,16 +44,28 @@ public class ReciptAdapter extends RecyclerView.Adapter<ReciptAdapter.ImageViewH
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         final Recipt uploadCurrent = mUploads.get(position);
 
-            holder.date.setText(uploadCurrent.getPay_date());
-            holder.amount.setText(uploadCurrent.getPay_deposit());
+        holder.date.setText(uploadCurrent.getPay_date());
+        holder.amount.setText(uploadCurrent.getPay_deposit());
 
-            holder.pay_id.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        if (uploadCurrent.getPay_status().trim().equals("0")){
+            holder.status.setText("Pending Confirmation");
+        }else {
+            holder.status.setText("Payment Done");
+        }
+
+        holder.status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (uploadCurrent.getPay_status().trim().equals("1")) {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uploadCurrent.getPay_id()));
                     mContext.startActivity(browserIntent);
+                }else {
+                    Toast.makeText(mContext, "Pending Confirmation", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+        });
 
     }
 
@@ -63,26 +76,26 @@ public class ReciptAdapter extends RecyclerView.Adapter<ReciptAdapter.ImageViewH
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  date,amount,pay_id;
+        public TextView  date,amount,status;
 
-         public ImageViewHolder(View itemView) {
+        public ImageViewHolder(View itemView) {
 
-             super(itemView);
-             date = itemView.findViewById(R.id.date);
-             //pay_date=itemView.findViewById(R.id.paydate);
-           //  mem_id=itemView.findViewById(R.id.memberid);
-           //  mem_name=itemView.findViewById(R.id.membername);
-             amount=itemView.findViewById(R.id.paid_amount);
-           //  mem_flat_type=itemView.findViewById(R.id.flattype);
-             pay_id=itemView.findViewById(R.id.receipt_link);
+            super(itemView);
+            date = itemView.findViewById(R.id.date);
+            //pay_date=itemView.findViewById(R.id.paydate);
+            //  mem_id=itemView.findViewById(R.id.memberid);
+            //  mem_name=itemView.findViewById(R.id.membername);
+            amount=itemView.findViewById(R.id.paid_amount);
+            //  mem_flat_type=itemView.findViewById(R.id.flattype);
+            status=itemView.findViewById(R.id.status);
              /*pay_deposit=itemView.findViewById(R.id.deposite);
             // pay_remaining=itemView.findViewById(R.id.remaining);
              pay_month=itemView.findViewById(R.id.month);
              pay_status=itemView.findViewById(R.id.status);
 */
-             itemView.setOnClickListener(this);
-             itemView.setOnCreateContextMenuListener(this);
-         }
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
+        }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {

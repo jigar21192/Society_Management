@@ -41,12 +41,14 @@
             android:id="@+id/contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#212121"
             android:text="Contact no" />
         <TextView
             android:gravity="center"
             android:id="@+id/flatno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#212121"
             android:text="Flat no" />
     </LinearLayout>
 
