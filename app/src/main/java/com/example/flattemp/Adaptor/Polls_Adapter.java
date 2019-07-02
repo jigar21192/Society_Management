@@ -22,7 +22,7 @@ public class Polls_Adapter extends PagerAdapter {
     List<Polls_Model> list;
     Context context;
     LayoutInflater inflater;
-    static int sc=0;
+
 
 
     public Polls_Adapter(Context context, List<Polls_Model> list) {
@@ -57,16 +57,15 @@ public class Polls_Adapter extends PagerAdapter {
 
   //      final Button button = convertView.findViewById(R.id.button1);
         final RadioGroup radioGroup = convertView.findViewById(R.id.radioGroup);
-/*
-        Model model=list.get(position);
-        question.setText(model.getQuestion());
+        Polls_Model model=list.get(position);
+        question.setText(model.getSubject());
         //  a.setText(model.getAns());
         ans1.setText(model.getAns1());
         ans2.setText(model.getAns2());
         ans3.setText(model.getAns3());
         ans4.setText(model.getAns4());
 
-        final String ans=model.getAns();*/
+        //final String ans=model.getAns();
 
 
         final View finalConvertView = convertView;
