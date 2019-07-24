@@ -43,7 +43,7 @@ import java.util.Map;
 public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAdaptor.ImageViewHolder> {
     //String url_date="http://pivotnet.co.in/SocietyManagement/Android/cancel_booking.php";
     String id;
-    private Context mContext;
+     Context mContext;
     private List<Booking> mUploads;
     private OnItemClickListener mListener;
     public BookinghistoryAdaptor(Context mContext, List<Booking> mUploads) {
@@ -67,7 +67,11 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
         holder.date.setText(uploadCurrent.getDate_from()+" to "+uploadCurrent.getDate_to());
 
         if (uploadCurrent.getBooked_status().trim().equals("0")) {
-            holder.status.setText("Booked");
+            holder.status.setText("Pending");
+        }
+        else if (uploadCurrent.getBooked_status().trim().equals("1")){
+            holder.status.setText("Booking Confirmation");
+
         }else {
             holder.status.setText("Booking Cancel");
             holder.txtcancel.setVisibility(View.GONE);
@@ -75,7 +79,7 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
 
         holder.txtcancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlsList.cancel_facility_booking,
                         new Response.Listener<String>() {
@@ -83,9 +87,12 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
                             public void onResponse(String response) {
                                 if (response.trim().equals("success")){
                                     Toast.makeText(mContext, "SuccessFull Cancel", Toast.LENGTH_SHORT).show();
+
                                     Intent intent=new Intent(mContext,BookingHistory.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     mContext.startActivity(intent);
                                     ((Activity)mContext).finish();
+
 
                                 }else {
                                     Toast.makeText(mContext, "Some Problem", Toast.LENGTH_SHORT).show();

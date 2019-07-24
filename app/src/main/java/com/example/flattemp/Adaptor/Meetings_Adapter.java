@@ -38,6 +38,7 @@ public class Meetings_Adapter extends RecyclerView.Adapter<Meetings_Adapter.Meet
         holder.txt_date.setText("Date:"+model.getDate());
         holder.txt_title.setText("Title:"+model.getTitle());
         holder.txt_desc.setText("Description:"+model.getDescription());
+        holder.txt_time.setText("Time:"+model.getTime());
 
       /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +61,7 @@ public class Meetings_Adapter extends RecyclerView.Adapter<Meetings_Adapter.Meet
 
     public class MeetingsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView txt_date,txt_title,txt_desc;
+        public TextView txt_date,txt_title,txt_desc,txt_time;
         public ImageView imageView;
         public MeetingsViewHolder(View itemView) {
 
@@ -68,6 +69,7 @@ public class Meetings_Adapter extends RecyclerView.Adapter<Meetings_Adapter.Meet
             txt_date = itemView.findViewById(R.id.m_date);
             txt_title = itemView.findViewById(R.id.m_title);
             txt_desc = itemView.findViewById(R.id.m_desc);
+            txt_time = itemView.findViewById(R.id.m_time);
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
         }

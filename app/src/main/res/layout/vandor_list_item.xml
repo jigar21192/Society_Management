@@ -43,6 +43,9 @@
             android:layout_height="wrap_content"
             android:textColor="#212121"
             android:text="Contact no" />
+
+
+
         <TextView
             android:gravity="center"
             android:id="@+id/vandor_details"

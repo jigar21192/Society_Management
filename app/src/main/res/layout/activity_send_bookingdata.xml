@@ -229,7 +229,6 @@
             android:inputType="textMultiLine"
             android:id="@+id/ereason"
             android:textSize="20dp"
-            android:gravity="center"
             android:paddingLeft="10dp"
             android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
@@ -258,7 +257,7 @@
     <Button
         android:background="@drawable/btn_shape"
         android:id="@+id/submit"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:text="Submit Request"
         android:textColor="#fff"

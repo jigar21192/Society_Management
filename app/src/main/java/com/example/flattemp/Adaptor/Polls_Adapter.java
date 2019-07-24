@@ -13,15 +13,35 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.flattemp.MainActivity;
 import com.example.flattemp.Model.Polls_Model;
+import com.example.flattemp.Model.UrlsList;
+import com.example.flattemp.Polls;
 import com.example.flattemp.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URI;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Polls_Adapter extends PagerAdapter {
     List<Polls_Model> list;
     Context context;
     LayoutInflater inflater;
+
+
 
 
 
@@ -51,19 +71,72 @@ public class Polls_Adapter extends PagerAdapter {
         RadioButton ans2=convertView.findViewById(R.id.radio2);
         RadioButton ans3=convertView.findViewById(R.id.radio3);
         RadioButton ans4=convertView.findViewById(R.id.radio4);
+        Button vote = convertView.findViewById(R.id.vote);
+        final RadioGroup radioGroup = convertView.findViewById(R.id.radioGroup);
+
+
+
         //   final TextView score=convertView.findViewById(R.id.score);
 
         //   score.setText(String.valueOf(sc));
 
   //      final Button button = convertView.findViewById(R.id.button1);
-        final RadioGroup radioGroup = convertView.findViewById(R.id.radioGroup);
-        Polls_Model model=list.get(position);
+        final Polls_Model model=list.get(position);
         question.setText(model.getSubject());
         //  a.setText(model.getAns());
         ans1.setText(model.getAns1());
         ans2.setText(model.getAns2());
         ans3.setText(model.getAns3());
         ans4.setText(model.getAns4());
+
+        vote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                final RadioButton r1 = (RadioButton) convertView.findViewById(selectedId);
+                if (selectedId == -1) {
+                    Toast.makeText(context, "Nothing selected", Toast.LENGTH_SHORT).show();
+                } else {
+
+
+                    StringRequest request = new StringRequest(Request.Method.POST, UrlsList.poll_answer, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            if (response.trim().equals("success")){
+                                Toast.makeText(context, "Submit Successfull", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(context, "Some Problem", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    }) {
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> param = new HashMap<>();
+                            param.put("id",model.getId());
+                            param.put("pid", r1.getText().toString());
+
+
+                            return param;
+                        }
+                    };
+
+                    RequestQueue queue = Volley.newRequestQueue(context);
+                    queue.add(request);
+
+
+                }
+            }
+        });
+
+
 
         //final String ans=model.getAns();
 

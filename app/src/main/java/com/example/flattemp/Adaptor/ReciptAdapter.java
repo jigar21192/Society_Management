@@ -49,23 +49,27 @@ public class ReciptAdapter extends RecyclerView.Adapter<ReciptAdapter.ImageViewH
 
         if (uploadCurrent.getPay_status().trim().equals("0")){
             holder.status.setText("Pending Confirmation");
-        }else {
+        }
+        else if (uploadCurrent.getPay_status().trim().equals("2")){
+            holder.status.setText("Pending Cancel");
+        }
+
+        else {
             holder.status.setText("Payment Done");
         }
 
-        holder.status.setOnClickListener(new View.OnClickListener() {
+       holder.status.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+           public void onClick(View v) {
 
                 if (uploadCurrent.getPay_status().trim().equals("1")) {
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uploadCurrent.getPay_id()));
                     mContext.startActivity(browserIntent);
-                }else {
-                    Toast.makeText(mContext, "Pending Confirmation", Toast.LENGTH_SHORT).show();
-                }
-            }
+               }
+           }
         });
+
+
 
     }
 

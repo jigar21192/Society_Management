@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -32,7 +33,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UpcomingEvents extends AppCompatActivity {
     //private static final String URL_PRODUCTS = "http://pivotnet.co.in/SocietyManagement/Android/fetchupcomingevents.php";
@@ -41,10 +44,14 @@ public class UpcomingEvents extends AppCompatActivity {
     VisitorAdaptor eventAdaptor;
     SwipeRefreshLayout pullToRefresh;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upcoming_events);
+
+
+
         pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
         eventrecycler = findViewById(R.id.eventrecycle);
         eventrecycler.setHasFixedSize(true);
@@ -183,8 +190,9 @@ public class UpcomingEvents extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        }
-        );
+        });
+
+
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(getApplicationContext()).add(stringRequest);

@@ -35,6 +35,7 @@ public class UrlsList {
 
     //fetch
     public static final String fetch_members_details_url=base_url+"Android/fetchmemberdata.php";
+    public static final String fetch_complain_status_url=base_url+"Android/complain_status.php";
     public static final String fetch_booking_data_url=base_url+"Android/fetch_bookingdata.php";
     public static final String  fetch_documents_url=base_url+"Android/fetch_document.php";
     public static final String  fetct_gallry_img_url=base_url+"Android/fetchgallery.php";
@@ -63,6 +64,7 @@ public class UrlsList {
     public static final String fetch_Society_Statement=base_url+"Android/fetch_statement.php";
     public static final String fetch_Society_expense=base_url+"Android/fetch_expense.php";
     public static final String cancel_facility_booking=base_url+"Android/cancel_booking.php";
+   public static final String poll_answer=base_url+"Android/vote_poll.php";
 
 
 

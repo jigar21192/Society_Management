@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,6 +58,7 @@ public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Ad
         });*/
     }
 
+
     @Override
     public int getItemCount() {
         return mUploads.size();
@@ -72,6 +74,7 @@ public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Ad
             date = itemView.findViewById(R.id.m_date);
             complain = itemView.findViewById(R.id.m_title);
             admin_reply = itemView.findViewById(R.id.m_desc);
+
 
 
 
@@ -120,6 +123,7 @@ public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Ad
 
         }
     }
+
 
     public interface OnItemClickListener {
         void onItemClick(int position);

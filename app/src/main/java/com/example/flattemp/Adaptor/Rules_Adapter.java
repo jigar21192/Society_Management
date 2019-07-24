@@ -57,6 +57,7 @@ public class Rules_Adapter extends RecyclerView.Adapter<Rules_Adapter.ImageViewH
             public void onClick(View v) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Download));
                 mContext.startActivity(browserIntent);
+
             }
         });
 

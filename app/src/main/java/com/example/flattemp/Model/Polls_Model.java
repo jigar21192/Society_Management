@@ -1,8 +1,9 @@
 package com.example.flattemp.Model;
 
 public class Polls_Model {
-    public Polls_Model(String id, String subject, String created, String modified, String status, String ans1, String ans2, String ans3, String ans4) {
+    public Polls_Model(String id , String subject, String created, String modified, String status, String ans1, String ans2, String ans3, String ans4) {
         this.id = id;
+
         this.subject = subject;
         this.created = created;
         this.modified = modified;
@@ -11,6 +12,7 @@ public class Polls_Model {
         this.ans2 = ans2;
         this.ans3 = ans3;
         this.ans4 = ans4;
+
     }
 
     public String getId() {
@@ -20,6 +22,8 @@ public class Polls_Model {
     public void setId(String id) {
         this.id = id;
     }
+
+
 
     public String getSubject() {
         return subject;
@@ -84,6 +88,10 @@ public class Polls_Model {
     public void setAns4(String ans4) {
         this.ans4 = ans4;
     }
+
+
+
+
 
     String id,subject,created,modified,status,ans1,ans2,ans3,ans4;
 }

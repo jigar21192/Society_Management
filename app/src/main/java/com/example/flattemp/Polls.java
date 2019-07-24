@@ -43,7 +43,7 @@ import java.util.Map;
 public class  Polls extends AppCompatActivity {
 
 
-Button pre,next;
+    Button pre,next,result;
     ViewPager mViewPager;
     private int currentPage = 0;
     String question,ans1,ans2,ans3,ans4;
@@ -59,10 +59,13 @@ Button pre,next;
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         mem_id = sharedPreferences.getString(Config.MEMBER_ID_SHARED_PREF,"Not Available");
 
+
         eventlist=new ArrayList<>();
 
         pre=findViewById(R.id.pre);
         next=findViewById(R.id.next);
+        result=findViewById(R.id.result);
+
 
         getdata();
 
@@ -120,6 +123,12 @@ Button pre,next;
                 mViewPager.setCurrentItem(getItem(-1)); //getItem(-1) for previous*/
             }
         });
+        result.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -157,6 +166,7 @@ Button pre,next;
                                         user.getString("ans2"),
                                         user.getString("ans3"),
                                         user.getString("ans4")
+
 
 
                                 ));

@@ -24,7 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.flattemp.Adaptor.DocumentAdapter;
-import com.example.flattemp.Adaptor.EventAdapter;
+import com.example.flattemp.Adaptor.EventAdapter1;
 import com.example.flattemp.Adaptor.VisitorAdaptor;
 import com.example.flattemp.Model.Config;
 import com.example.flattemp.Model.Document;

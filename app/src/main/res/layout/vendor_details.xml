@@ -27,14 +27,7 @@
 
         android:orientation="vertical">
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/vandor_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textColor="#212121"
-            android:textSize="20dp" />
+
 
         <TextView
             android:gravity="center"
@@ -42,7 +35,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#212121"
-            android:text="Contact no" />
+            android:text="Contact no"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/vandor_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#212121"
+             />
+
         <TextView
             android:gravity="center"
             android:id="@+id/vandor_details"

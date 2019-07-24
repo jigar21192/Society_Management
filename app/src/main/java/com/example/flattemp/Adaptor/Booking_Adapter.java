@@ -54,7 +54,10 @@ public class Booking_Adapter extends RecyclerView.Adapter<Booking_Adapter.Bookin
                 Intent intent=new Intent(mContext, SendBookingdata.class);
                 intent.putExtra("booking_id",model.getBooking_id());
                 intent.putExtra("name",model.getName());
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mContext.startActivity(intent);
+
             }
         });
 

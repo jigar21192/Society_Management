@@ -18,11 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by Manoranjan on 4/23/2018.
- */
-
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ImageViewHolder> {
+public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ImageViewHolder>{
     private Context mContext;
     private List<Event> mUploads;
     private OnItemClickListener mListener;
@@ -40,14 +36,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Event uploadCurrent = mUploads.get(position);
-String imgurl= UrlsList.pdf_storage +uploadCurrent.getUpdate_upcoming_events_img();
-       Picasso.with(mContext)
+        String imgurl= UrlsList.pdf_storage +uploadCurrent.getUpdate_upcoming_events_img();
+        Picasso.with(mContext)
                 .load(imgurl)
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .into(holder.imageView);
         holder.textViewName.setText(uploadCurrent.getUpdate_upcoming_events());
-       holder.desc.setText(uploadCurrent.getUpdate_upcoming_events_date());
+        holder.desc.setText(uploadCurrent.getUpdate_upcoming_events_date());
     }
 
     @Override
@@ -58,16 +54,16 @@ String imgurl= UrlsList.pdf_storage +uploadCurrent.getUpdate_upcoming_events_img
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
         public TextView textViewName,desc;
-        public ImageView imageView;
-         public ImageViewHolder(View itemView) {
+        private ImageView imageView;
+        public ImageViewHolder(View itemView) {
 
-             super(itemView);
-             textViewName = itemView.findViewById(R.id.text_view_name);
-             desc=itemView.findViewById(R.id.text_view_desc);
-             imageView = itemView.findViewById(R.id.image_view_upload);
-             itemView.setOnClickListener(this);
-             itemView.setOnCreateContextMenuListener(this);
-         }
+            super(itemView);
+            textViewName = itemView.findViewById(R.id.text_view_name);
+            desc=itemView.findViewById(R.id.text_view_desc);
+            imageView = itemView.findViewById(R.id.image_view_upload);
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
+        }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
@@ -109,6 +105,7 @@ String imgurl= UrlsList.pdf_storage +uploadCurrent.getUpdate_upcoming_events_img
             }
 
         }
+
     }
 
     public interface OnItemClickListener {
@@ -122,5 +119,6 @@ String imgurl= UrlsList.pdf_storage +uploadCurrent.getUpdate_upcoming_events_img
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
+
 
 }

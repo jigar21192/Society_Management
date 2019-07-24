@@ -2,13 +2,17 @@ package com.example.flattemp.Model;
 
 public class Meeting_Model {
 
-String date,title,description;
+String date,title,description,time;
 
-    public Meeting_Model(String date, String title, String description) {
+    public Meeting_Model(String date, String title, String description,String time) {
         this.date = date;
         this.title = title;
         this.description = description;
+        this.time = time;
+
     }
+
+
 
     public String getDate() {
         return date;
@@ -33,4 +37,13 @@ String date,title,description;
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
 }

@@ -76,9 +76,11 @@
         android:layout_height="50dp"
         android:layout_below="@+id/radioGroup"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/btn_shape"
         android:gravity="center"
-        android:text="Vote" />
+        android:text="Vote"
+        android:textColor="#fff" />
 
 
 
