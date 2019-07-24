@@ -71,8 +71,8 @@ public class UrlsList {
 
 
     //send
-    public static final String pay_rent_url=base_url+"Android/pay_rent_android.php";
-    public static final String  update_profile_data_url=base_url+"admin/upload_profile.php";
+    public static final String   pay_rent_url=base_url+"Android/pay_rent_android.php";
+    public static final String   update_profile_data_url=base_url+"admin/upload_profile.php";
     public static final String   update_profilepic_url=base_url+"admin/uploadprofilepic.php";
     public static final String    vote_poll_url=base_url+"Android/vote_poll.php";
     public static final String     send_booking_request=base_url+"Android/booking_request.php";
