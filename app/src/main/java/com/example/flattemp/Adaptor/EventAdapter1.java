@@ -49,23 +49,6 @@ String imgurl= UrlsList.pdf_storage +uploadCurrent.getUpdate_upcoming_events_img
                 .into(holder.imageView);
         holder.textViewName.setText(uploadCurrent.getUpdate_upcoming_events());
        holder.desc.setText(uploadCurrent.getUpdate_upcoming_events_date());
-       holder.imglike.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               if (like.equals("no"))
-               {
-                   holder.imglike.setImageResource(R.drawable.ic_unlike);
-                   holder.likecount.setText("4 Likes");
-                   like="yes";
-               }else
-               if (like.equals("yes")){
-                   holder.likecount.setText("3 Likes");
-                   holder.imglike.setImageResource(R.drawable.ic_like);
-                   like="no";
-               }
-
-           }
-       });
     }
 
     @Override
@@ -75,16 +58,14 @@ String imgurl= UrlsList.pdf_storage +uploadCurrent.getUpdate_upcoming_events_img
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView textViewName,desc,likecount;
-        public ImageView imageView,imglike;
+        public TextView textViewName,desc;
+        public ImageView imageView;
          public ImageViewHolder(View itemView) {
 
              super(itemView);
              textViewName = itemView.findViewById(R.id.text_view_name);
              desc=itemView.findViewById(R.id.text_view_desc);
              imageView = itemView.findViewById(R.id.image_view_upload);
-             imglike=itemView.findViewById(R.id.imglike);
-             likecount=itemView.findViewById(R.id.likecount);
              itemView.setOnClickListener(this);
              itemView.setOnCreateContextMenuListener(this);
          }

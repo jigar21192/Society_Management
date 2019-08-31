@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -83,7 +84,7 @@ public class Notice extends AppCompatActivity implements  NoticeAdapter.OnItemCl
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
+                            Log.e("Res",">>>>>>"+response);
                             try {
                                 //converting the string to json array object
                                 JSONArray array = new JSONArray(response);

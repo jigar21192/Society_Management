@@ -38,13 +38,13 @@ public class View_Statement_Adapter extends RecyclerView.Adapter<View_Statement_
         final View_Statement_Model model = mUploads.get(position);
 
 
-        holder.date.setText(model.getPay_date());
-        holder.transaction_name.setText(model.getMem_name());
-        if (model.getType().trim().equals("1")){
-            holder.withdraw_amount.setText(model.getPay_deposit());
-        }else {
-            holder.diposit_amount.setText(model.getPay_deposit());
-        }
+        holder.date1.setText(model.getpay_date());
+        holder.credit1.setText(model.getpay_fixed());
+
+            holder.debit1.setText(model.getpay_deposit());
+
+            holder.balance1.setText(model.getpay_remaining());
+
 
 
 
@@ -59,18 +59,18 @@ public class View_Statement_Adapter extends RecyclerView.Adapter<View_Statement_
 
     public class NoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  date,transaction_name,diposit_amount,withdraw_amount;
+        public TextView  date1,credit1,debit1,balance1;
         public NoticeViewHolder(View itemView) {
 
             super(itemView);
-            date = itemView.findViewById(R.id.date);
+            date1 = itemView.findViewById(R.id.date1);
             //pay_date=itemView.findViewById(R.id.paydate);
             //  mem_id=itemView.findViewById(R.id.memberid);
             //  mem_name=itemView.findViewById(R.id.membername);
-            transaction_name=itemView.findViewById(R.id.transaction_name);
+            credit1=itemView.findViewById(R.id.fixed);
             //  mem_flat_type=itemView.findViewById(R.id.flattype);
-            diposit_amount=itemView.findViewById(R.id.diposit_amount);
-            withdraw_amount=itemView.findViewById(R.id.withdraw_amount);
+            debit1=itemView.findViewById(R.id.de);
+            balance1=itemView.findViewById(R.id.remaining);
              /*pay_deposit=itemView.findViewById(R.id.deposite);
             // pay_remaining=itemView.findViewById(R.id.remaining);
              pay_month=itemView.findViewById(R.id.month);

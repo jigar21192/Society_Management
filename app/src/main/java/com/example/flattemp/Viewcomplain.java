@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -187,10 +188,17 @@ public class Viewcomplain extends AppCompatActivity {
                                 visitorlist.add(0, new View_Complain_Model(
                                         user.getString("mem_complaint"),
                                         user.getString("mem_complaint_desc"),
+
+
                                         user.getString("mem_complaint_date"),
-                                        user.getString("admin_reply")
+                                        user.getString("admin_reply"),
+                                        user.getString("status"),
+                                        user.getString("complaint_id")
+
 
                                 ));
+
+                                Log.e("Data",">>>>>"+response);
 
 
                             }

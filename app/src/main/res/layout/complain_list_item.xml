@@ -33,48 +33,40 @@
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/c_reply"
-        android:text="Complain Reply:"/>
+        android:id="@+id/dec"
+        android:text="Description:"
+       />
     <TextView
+        android:id="@+id/c_reply"
+        android:text="Complain Reply:"
         android:textSize="20dp"
         android:layout_margin="7dp"
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Dec"
-        android:text="Description:"/>
+        />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        android:paddingLeft="50dp">
-
-        <Button
-            android:id="@+id/sat"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_shape"
-            android:text="Satisfy"
-            android:textColor="#fff" />
-
-        <Button
-            android:id="@+id/unsat"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:background="@drawable/btn_shape"
-            android:text="UnSatisfy"
-            android:textColor="#fff" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginBottom="8dp"/>
-
-
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/satisfy"
+        android:paddingTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/Red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Satisfied"
+        />
+    <TextView
+        android:id="@+id/unsatisfy"
+        android:paddingTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/Red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UnSatisfied"
+        />
 
 </LinearLayout>

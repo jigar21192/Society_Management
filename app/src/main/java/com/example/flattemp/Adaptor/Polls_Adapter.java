@@ -67,11 +67,13 @@ public class Polls_Adapter extends PagerAdapter {
     public Object instantiateItem(final ViewGroup container, int position) {
         final View convertView = this.inflater.inflate(R.layout.item_poll, container, false);
         TextView question=convertView.findViewById(R.id.text_view_question);
-        RadioButton ans1=convertView.findViewById(R.id.radio1);
-        RadioButton ans2=convertView.findViewById(R.id.radio2);
-        RadioButton ans3=convertView.findViewById(R.id.radio3);
-        RadioButton ans4=convertView.findViewById(R.id.radio4);
-        Button vote = convertView.findViewById(R.id.vote);
+        final RadioButton ans1=convertView.findViewById(R.id.radio1);
+        final RadioButton ans2=convertView.findViewById(R.id.radio2);
+        final RadioButton ans3=convertView.findViewById(R.id.radio3);
+        final RadioButton ans4=convertView.findViewById(R.id.radio4);
+        final Button vote = convertView.findViewById(R.id.vote);
+
+
         final RadioGroup radioGroup = convertView.findViewById(R.id.radioGroup);
 
 
@@ -104,6 +106,11 @@ public class Polls_Adapter extends PagerAdapter {
                         public void onResponse(String response) {
 
                             if (response.trim().equals("success")){
+                                vote.setEnabled(false);
+                                ans1.setClickable(false);
+                                ans2.setClickable(false);
+                                ans3.setClickable(false);
+                                ans4.setClickable(false);
                                 Toast.makeText(context, "Submit Successfull", Toast.LENGTH_SHORT).show();
                             }else {
                                 Toast.makeText(context, "Some Problem", Toast.LENGTH_SHORT).show();
@@ -122,6 +129,7 @@ public class Polls_Adapter extends PagerAdapter {
                             Map<String, String> param = new HashMap<>();
                             param.put("id",model.getId());
                             param.put("pid", r1.getText().toString());
+                            param.put("uid", Polls.mem_id);
 
 
                             return param;

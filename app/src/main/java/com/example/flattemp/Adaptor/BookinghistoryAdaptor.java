@@ -72,7 +72,11 @@ public class BookinghistoryAdaptor extends RecyclerView.Adapter<BookinghistoryAd
         else if (uploadCurrent.getBooked_status().trim().equals("1")){
             holder.status.setText("Booking Confirmation");
 
-        }else {
+        }
+        else if(uploadCurrent.getBooked_status().trim().equals("3")){
+            holder.status.setText("Waiting for admin reply");
+        }
+        else {
             holder.status.setText("Booking Cancel");
             holder.txtcancel.setVisibility(View.GONE);
         }

@@ -32,43 +32,11 @@
                 android:id="@+id/event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Event Name"
+                android:text="Title"
                 android:textSize="18sp" />
 
-            <TextView
-                android:paddingLeft="10dp"
-                android:id="@+id/event_position"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Position"
-                android:textSize="18sp" />
 
-            <TextView
-                android:paddingLeft="10dp"
-                android:id="@+id/text_view_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Description"
-                android:textSize="15sp" />
 
-            <LinearLayout
-                android:id="@+id/lllikebutton"
-                android:layout_marginTop="5dp"
-                android:paddingTop="2dp"
-                android:gravity="center"
-                android:paddingLeft="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp">
-                <ImageView
-                    android:id="@+id/imglike"
-                    android:src="@drawable/ic_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
 
         </LinearLayout>
 

@@ -98,7 +98,7 @@ public class SendBookingdata extends AppCompatActivity {
                 int day=cal.get(Calendar.DATE);
 
 
-                DatePickerDialog dailog= new DatePickerDialog(SendBookingdata.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDatesetlistner,year,month+1,day);
+                DatePickerDialog dailog= new DatePickerDialog(SendBookingdata.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,mDatesetlistner,year,month,day);
                 dailog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dailog.show();
             }
@@ -106,8 +106,8 @@ public class SendBookingdata extends AppCompatActivity {
         mDatesetlistner=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                datepicked=  dayOfMonth+"/"+month+"/"+year;
-                from_date=year+"-"+month+"-"+dayOfMonth;
+                datepicked=  dayOfMonth+"/"+(month+1)+"/"+year;
+                from_date=year+"-"+(month+1)+"-"+dayOfMonth;
                 tdate.setText(datepicked);
                // loaddate(datepicked);
 
@@ -123,7 +123,7 @@ public class SendBookingdata extends AppCompatActivity {
                 int day=cal.get(Calendar.DATE);
 
 
-                DatePickerDialog dailog= new DatePickerDialog(SendBookingdata.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,date1,year,month+1,day);
+                DatePickerDialog dailog= new DatePickerDialog(SendBookingdata.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,date1,year,month,day);
                 dailog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dailog.show();
             }
@@ -131,8 +131,8 @@ public class SendBookingdata extends AppCompatActivity {
         date1=new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                to_datepicked=  dayOfMonth+"/"+month+"/"+year;
-                to_date1=year+"-"+month+"-"+dayOfMonth;
+                to_datepicked=  dayOfMonth+"/"+(month+1)+"/"+year;
+                to_date1=year+"-"+(month+1)+"-"+dayOfMonth;
                 to_date.setText(to_datepicked);
                 loaddate(datepicked,to_datepicked,facility_name);
 
@@ -184,6 +184,7 @@ public class SendBookingdata extends AppCompatActivity {
                             finish();
                             //Starting profile activity
                         }else {
+                            progressDialog.dismiss();
                             Toast.makeText(SendBookingdata.this, "Some Issue", Toast.LENGTH_SHORT).show();
                         }
 

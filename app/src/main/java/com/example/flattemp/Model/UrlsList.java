@@ -48,6 +48,7 @@ public class UrlsList {
     public static final String  fetch_monthly_reciept=base_url+"Android/monthly_receipt_fetch.php";
     public static final String fetch_view_statement_self=base_url+"Android/fetch_viewstatement_self.php";
     public static final String fetch_visitor=base_url+"Android/fetchvisitor.php";
+   public static final String fetch_public=base_url+"Android/fetch_public_wall.php";
     public static final String fetch_notice=base_url+"Android/fetch_notice.php";
     public static final String fetch_meetings=base_url+"Android/fetch_meetings.php";
     public static final String fetch_vendor=base_url+"Android/fetch_vendor.php";
@@ -65,8 +66,10 @@ public class UrlsList {
     public static final String fetch_Society_expense=base_url+"Android/fetch_expense.php";
     public static final String cancel_facility_booking=base_url+"Android/cancel_booking.php";
    public static final String poll_answer=base_url+"Android/vote_poll.php";
-
-
+    public static final String poll_result=base_url+"Android/result.php";
+    public static final String Upload_Public_Wall=base_url+"Android/uploadImage.php";
+    public static final String satisfy_complain=base_url+"Android/satisfied.php";
+    public static final String unsatisfy_complain=base_url+"Android/Satisfiedun.php";
 
 
 

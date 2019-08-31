@@ -1,7 +1,7 @@
 package com.example.flattemp.Model;
 
 public class View_Statement_Self_Model {
-    public View_Statement_Self_Model(String pay_id, String pay_date, String mem_id, String mem_name, String mem_flat_num, String mem_flat_type, String pay_fixed, String pay_deposit, String pay_remaining, String pay_month, String pay_status) {
+    public View_Statement_Self_Model(String pay_id, String pay_date, String mem_id, String mem_name, String mem_flat_num, String mem_flat_type, String pay_fixed,String pay_debit,String pay_balance, String pay_month, String pay_status) {
         this.pay_id = pay_id;
         this.pay_date = pay_date;
         this.mem_id = mem_id;
@@ -9,8 +9,9 @@ public class View_Statement_Self_Model {
         this.mem_flat_num = mem_flat_num;
         this.mem_flat_type = mem_flat_type;
         this.pay_fixed = pay_fixed;
-        this.pay_deposit = pay_deposit;
-        this.pay_remaining = pay_remaining;
+
+        this.pay_debit = pay_debit;
+        this.pay_balance = pay_balance;
         this.pay_month = pay_month;
         this.pay_status = pay_status;
     }
@@ -71,20 +72,28 @@ public class View_Statement_Self_Model {
         this.pay_fixed = pay_fixed;
     }
 
-    public String getPay_deposit() {
-        return pay_deposit;
+    public String getPay_credit() {
+        return pay_credit;
     }
 
-    public void setPay_deposit(String pay_deposit) {
-        this.pay_deposit = pay_deposit;
+    public void setPay_credit(String pay_credit) {
+        this.pay_credit = pay_credit;
     }
 
-    public String getPay_remaining() {
-        return pay_remaining;
+    public String getPay_debit() {
+        return pay_debit;
     }
 
-    public void setPay_remaining(String pay_remaining) {
-        this.pay_remaining = pay_remaining;
+    public void setPay_debit(String pay_debit) {
+        this.pay_debit = pay_debit;
+    }
+
+    public String getPay_balance() {
+        return pay_balance;
+    }
+
+    public void setPay_balance(String pay_balance) {
+        this.pay_balance = pay_balance;
     }
 
     public String getPay_month() {
@@ -103,5 +112,5 @@ public class View_Statement_Self_Model {
         this.pay_status = pay_status;
     }
 
-    String pay_id,pay_date,mem_id,mem_name,mem_flat_num,mem_flat_type,pay_fixed,pay_deposit,pay_remaining,pay_month,pay_status;
+    String pay_id,pay_date,mem_id,mem_name,mem_flat_num,mem_flat_type,pay_fixed,pay_credit,pay_debit,pay_balance,pay_month,pay_status;
 }

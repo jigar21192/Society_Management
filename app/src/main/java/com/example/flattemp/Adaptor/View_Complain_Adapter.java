@@ -2,6 +2,7 @@ package com.example.flattemp.Adaptor;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,13 +12,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.flattemp.Model.UrlsList;
 import com.example.flattemp.Model.View_Complain_Model;
+import com.example.flattemp.Polls;
 import com.example.flattemp.R;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Adapter.ComplainViewHolder> {
     private Context mContext;
@@ -30,19 +46,103 @@ public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Ad
 
     @Override
     public ComplainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.meetings_list_item, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.complain_list_item, parent, false);
         return new ComplainViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ComplainViewHolder holder, int position) {
+    public void onBindViewHolder(final ComplainViewHolder holder, int position) {
         final View_Complain_Model model = mUploads.get(position);
 
         holder.date.setText("Complain Date:"+model.getMem_complaint_date());
         holder.complain.setText("Complain is "+model.getMem_complaint());
         holder.admin_reply.setText("Admin Reply:"+model.getAdmin_reply());
+        holder.dec.setText("Description :-"+model.getMem_complaint_desc());
+      /*  holder.satisfy.setText("Satisfied"+model.getMem_user());
+        holder.unsatisfy.setText("UnSatisfied"+model.getMem_user());*/
+      String status=model.getStatus();
+      final String c_id=model.getC_id();
+
+      if (status.equals("1")){
+
+          holder.unsatisfy.setVisibility(View.GONE);
+      }else if (status.equals("2")){
+          holder.satisfy.setVisibility(View.GONE);
+
+      }
+      holder.satisfy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StringRequest request = new StringRequest(Request.Method.POST, UrlsList.satisfy_complain,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if (response.trim().equals("success")){
+                                    holder.unsatisfy.setVisibility(View.GONE);
+                                }else {
+                                    Toast.makeText(mContext, "Some Problem", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error",">>>>>>"+error.getMessage());
+                        Toast.makeText(mContext,error.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params = new HashMap<>();
+                        //Adding parameters to request
+                        params.put("mem_user_id",c_id);
+                        //returning parameter
+                        return params;
+                    }
+                };
+                RequestQueue queue = Volley.newRequestQueue(mContext);
+                queue.add(request);
+
+            }
+        });
 
 
+
+        holder.unsatisfy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                StringRequest request = new StringRequest(Request.Method.POST, UrlsList.unsatisfy_complain,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                if (response.trim().equals("success")){
+                                    holder.satisfy.setVisibility(View.GONE);
+                                }else {
+                                    Toast.makeText(mContext, "Some Problem", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(mContext,error.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params = new HashMap<>();
+                        //Adding parameters to request
+                        params.put("mem_user_id",c_id);
+                        //returning parameter
+                        return params;
+                    }
+                };
+                RequestQueue queue = Volley.newRequestQueue(mContext);
+                queue.add(request);
+
+            }
+        });
 
       /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,14 +166,18 @@ public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Ad
 
     public class ComplainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView date,complain,admin_reply;
+        public TextView satisfy,unsatisfy,date,complain,admin_reply,dec;
         public ImageView vendor_img;
         public ComplainViewHolder(View itemView) {
 
             super(itemView);
-            date = itemView.findViewById(R.id.m_date);
-            complain = itemView.findViewById(R.id.m_title);
-            admin_reply = itemView.findViewById(R.id.m_desc);
+
+            satisfy = itemView.findViewById(R.id.satisfy);
+            dec = itemView.findViewById(R.id.dec);
+            unsatisfy = itemView.findViewById(R.id.unsatisfy);
+            date = itemView.findViewById(R.id.c_type);
+            complain = itemView.findViewById(R.id.c_remarks);
+            admin_reply = itemView.findViewById(R.id.c_reply);
 
 
 
@@ -101,6 +205,7 @@ public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Ad
             return false;
 
         }
+
 
         @Override
         public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
@@ -136,5 +241,6 @@ public class View_Complain_Adapter extends RecyclerView.Adapter<View_Complain_Ad
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
+
 
 }

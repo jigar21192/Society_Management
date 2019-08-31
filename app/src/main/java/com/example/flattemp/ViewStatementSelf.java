@@ -108,11 +108,15 @@ public class ViewStatementSelf extends AppCompatActivity {
                                         user.getString("mem_flat_num"),
                                         user.getString("mem_flat_type"),
                                         user.getString("pay_fixed"),
+
                                         user.getString("pay_deposit"),
                                         user.getString("pay_remaining"),
                                         user.getString("pay_month"),
                                         user.getString("pay_status")
+
+
                               ));
+                              //  Log.e("Data",">>>>"+);
                             }
                             if (pullToRefresh.isRefreshing()) {
                             }
@@ -137,7 +141,7 @@ public class ViewStatementSelf extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put("cat",mem_id);
+                params.put("mem_user_id",mem_id);
                 //returning parameter
                 return params;
             }
@@ -154,6 +158,7 @@ public class ViewStatementSelf extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.e("response",">>>>>"+response);
                         try {
                             JSONArray array = new JSONArray(response);
                             JSONObject user = array.getJSONObject(0);

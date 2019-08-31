@@ -40,13 +40,12 @@ public class Halloffame_Adapter extends RecyclerView.Adapter<Halloffame_Adapter.
         String imgurl= UrlsList.pdf_storage +uploadCurrent.getFame_winner_img();
         Picasso.with(mContext)
                 .load(imgurl)
-                .placeholder(R.mipmap.ic_launcher)
+
                 .fit()
                 .into(holder.imageView);
-        holder.desc.setText("Description :"+uploadCurrent.getFame_about_event());
-        holder.textViewName.setText("Winner Name: "+uploadCurrent.getFame_winner_name());
-        holder.position.setText("Position: "+uploadCurrent.getFame_winner_pos());
-        holder.event_name.setText("Event Name: "+uploadCurrent.getFame_event_name());
+        holder.textEventName.setText("Title: "+uploadCurrent.getFame_event_name());
+        holder.textViewName.setVisibility(View.GONE);
+
 
     }
 
@@ -57,17 +56,15 @@ public class Halloffame_Adapter extends RecyclerView.Adapter<Halloffame_Adapter.
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView textViewName,desc,position,event_name;
-        public ImageView imageView,imglike;
+        public TextView textViewName,textEventName;
+        public ImageView imageView;
         public ImageViewHolder(View itemView) {
 
             super(itemView);
             textViewName = itemView.findViewById(R.id.text_view_name);
-            desc=itemView.findViewById(R.id.text_view_desc);
+            textEventName = itemView.findViewById(R.id.event_name);
             imageView = itemView.findViewById(R.id.image_view_upload);
-            imglike=itemView.findViewById(R.id.imglike);
-            position=itemView.findViewById(R.id.event_position);
-            event_name=itemView.findViewById(R.id.event_name);
+
 
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);

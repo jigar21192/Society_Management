@@ -10,6 +10,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp">
 
+        <Button
+            android:id="@+id/wallbtn"
+            android:layout_marginLeft="300dp"
+            android:background="#fff"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,6 +28,7 @@
                 android:id="@+id/image_view_upload"
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
+
             <TextView
                 android:paddingLeft="10dp"
                 android:id="@+id/text_view_name"
@@ -29,38 +39,14 @@
                 android:textSize="18sp" />
             <TextView
                 android:paddingLeft="10dp"
-                android:id="@+id/text_view_desc"
+                android:id="@+id/event_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Description"
-                android:textSize="15sp" />
+                android:text="Title"
+                android:textSize="18sp" />
 
-            <LinearLayout
-                android:id="@+id/lllikebutton"
-                android:layout_marginTop="5dp"
-                android:paddingTop="2dp"
-                android:gravity="center"
-                android:paddingLeft="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp">
-                <ImageView
-                    android:id="@+id/imglike"
-                    android:src="@drawable/ic_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/likecount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:text=" 3 Like"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+
 
         </LinearLayout>
 

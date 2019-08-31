@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -85,6 +86,7 @@ public class ViewStatementSociety extends AppCompatActivity implements  View_Sta
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.e("response",">>>>>"+response);
 
                         try {
                             //converting the string to json array object
@@ -100,7 +102,9 @@ public class ViewStatementSociety extends AppCompatActivity implements  View_Sta
                                 eventlist.add(0, new View_Statement_Model(
                                         user.getString("mem_name"),
                                         user.getString("pay_date"),
+                                        user.getString("pay_fixed"),
                                         user.getString("pay_deposit"),
+                                        user.getString("pay_remaining"),
                                         user.getString("type")
                                 ));
 

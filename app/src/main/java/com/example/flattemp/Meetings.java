@@ -99,7 +99,7 @@ public class Meetings extends AppCompatActivity implements  Meetings_Adapter.OnI
                                 eventlist.add(0, new Meeting_Model(
                                         user.getString("meeting_date"),
                                         user.getString("meeting_title"),
-                                        user.getString("meeting_descr"),
+                                        user.getString("short_description"),
                                         user.getString("meeting_time")
 
                                 ));

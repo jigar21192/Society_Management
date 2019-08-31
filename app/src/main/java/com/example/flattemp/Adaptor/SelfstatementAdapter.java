@@ -41,16 +41,17 @@ public class SelfstatementAdapter extends RecyclerView.Adapter<SelfstatementAdap
         View_Statement_Self_Model uploadCurrent = mUploads.get(position);
 
         holder.pay_date.setText(uploadCurrent.getPay_date());
-        holder.diposit_amount.setText(uploadCurrent.getPay_deposit());
+        holder.pay_credit.setText(uploadCurrent.getPay_fixed());
        // holder.pay_date.setText(uploadCurrent.getPay_date());
         //holder.mem_id.setText(uploadCurrent.getMem_id());
         //holder.mem_name.setText(uploadCurrent.getMem_name());
        // holder.mem_flat_num.setText(uploadCurrent.getMem_flat_num());
        // holder.mem_flat_type.setText(uploadCurrent.getMem_flat_type());
-        holder.remaining_amount.setText(uploadCurrent.getPay_remaining());
+        holder.pay_debit.setText(uploadCurrent.getPay_debit());
        // holder.pay_deposit.setText(uploadCurrent.getPay_deposit());
         //holder.pay_remaining.setText(uploadCurrent.getPay_remaining());
 
+        holder.pay_balance.setText(uploadCurrent.getPay_balance());
        /* if (uploadCurrent.getPay_status().equals("0")){
             holder.pay_status.setTextColor(Color.parseColor("#2196F3"));
             holder.pay_status.setText("Pending");
@@ -76,7 +77,7 @@ public class SelfstatementAdapter extends RecyclerView.Adapter<SelfstatementAdap
 
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener{
-        public TextView  pay_id,pay_date,mem_id,mem_name, mem_flat_num, diposit_amount, pay_fixed, pay_deposit,remaining_amount, pay_month,pay_status;;
+        public TextView  pay_id,pay_date,mem_id,mem_name, mem_flat_num,pay_credit,pay_debit,pay_balance;;
 
          public ImageViewHolder(View itemView) {
 
@@ -85,10 +86,11 @@ public class SelfstatementAdapter extends RecyclerView.Adapter<SelfstatementAdap
              pay_date=itemView.findViewById(R.id.date);
            //  mem_id=itemView.findViewById(R.id.memberid);
            //  mem_name=itemView.findViewById(R.id.membername);
-             diposit_amount=itemView.findViewById(R.id.diposit_amount);
+             pay_credit=itemView.findViewById(R.id.credit);
            //  mem_flat_type=itemView.findViewById(R.id.flattype);
            //  pay_fixed=itemView.findViewById(R.id.Ammount);
-             remaining_amount=itemView.findViewById(R.id.remaining_amount);
+             pay_debit=itemView.findViewById(R.id.debit);
+             pay_balance=itemView.findViewById(R.id.balance);
             // pay_remaining=itemView.findViewById(R.id.remaining);
            //  pay_month=itemView.findViewById(R.id.month);
            //  pay_status=itemView.findViewById(R.id.status);

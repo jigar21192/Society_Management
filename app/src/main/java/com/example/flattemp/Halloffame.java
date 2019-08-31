@@ -101,12 +101,9 @@ public class Halloffame extends AppCompatActivity {
                                 // mem_name,mem_flat_num,mem_phone_num,in_time_date,visitor_img;
                                 eventlist.add(0, new Halloffame_model(
                                         user.getString("fame_id"),
-                                        user.getString("fame_event_name"),
                                         user.getString("fame_winner_name"),
                                         user.getString("fame_winner_img"),
-                                        user.getString("fame_winner_pos"),
-                                        user.getString("fame_about_event")
-
+                                        user.getString("fame_event_name")
 
                                 ));
 

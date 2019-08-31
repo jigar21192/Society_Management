@@ -48,7 +48,7 @@ public class  Polls extends AppCompatActivity {
     private int currentPage = 0;
     String question,ans1,ans2,ans3,ans4;
     List<Polls_Model> eventlist;
-    String mem_id;
+    public static String mem_id;
     Polls_Adapter adapter;
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -65,6 +65,9 @@ public class  Polls extends AppCompatActivity {
         pre=findViewById(R.id.pre);
         next=findViewById(R.id.next);
         result=findViewById(R.id.result);
+        result.setVisibility(View.GONE);
+
+
 
 
         getdata();
@@ -126,7 +129,39 @@ public class  Polls extends AppCompatActivity {
         result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"",Toast.LENGTH_LONG).show();
+                StringRequest request = new StringRequest(Request.Method.POST, UrlsList.poll_result,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                try {
+                                    JSONArray array = new JSONArray(response);
+                                    for (int i = 0;i<array.length();i++){
+                                        JSONObject result = array.getJSONObject(i);
+
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params = new HashMap<>();
+                        //Adding parameters to request
+                        params.put("mem_user_id",mem_id);
+                        //returning parameter
+                        return params;
+                    }
+                };
+                RequestQueue queue = Volley.newRequestQueue(Polls.this);
+                queue.add(request);
             }
         });
 

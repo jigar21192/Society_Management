@@ -18,11 +18,11 @@
 
             <TextView
 
-                android:id="@+id/date"
+                android:id="@+id/date1"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="DATE"
+                android:text="Date"
                 android:textColor="#000000"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -35,7 +35,7 @@
 
             <TextView
 
-                android:id="@+id/transaction_name"
+                android:id="@+id/fixed"
 
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
@@ -53,12 +53,12 @@
 
             <TextView
 
-                android:id="@+id/diposit_amount"
+                android:id="@+id/de"
 
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0"
+                android:text="deposit"
                 android:textColor="#000000"
                 android:textSize="20dp" />
         </LinearLayout>
@@ -71,12 +71,12 @@
 
             <TextView
 
-                android:id="@+id/withdraw_amount"
+                android:id="@+id/remaining"
 
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0"
+                android:text="remaining"
                 android:textColor="#000000"
                 android:textSize="20dp" />
         </LinearLayout>
